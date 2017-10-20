@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/tabs.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="上传按钮(UplaodButton) API" href="uploadbutton.html" />
+    <link rel="prev" title="弹出窗口(Dialog) API" href="dialog.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="uploadbutton.html" title="上传按钮(UplaodButton) API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dialog.html" title="弹出窗口(Dialog) API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tabs-api">
+<h1><a class="toc-backref" href="#id1">Tabs API</a><a class="headerlink" href="#tabs-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#tabs-api" id="id1">Tabs API</a><ul>
+<li><a class="reference internal" href="#k-tabs-options" id="id2">K.tabs(options)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-tabs-options">
+<span id="k-tabs"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.tabs(options)</a><a class="headerlink" href="#k-tabs-options" title="Permalink to this headline">¶</a></h2>
+<p>创建Tabs。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object options: 配置信息</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KTabs</p>
+</li>
+<li><p class="first">继承: KWidget ( <a class="reference internal" href="widget.html#k-widget"><span class="std std-ref">K.widget(options)</span></a> )</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">tabs</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">tabs</span><span class="p">({</span>
+        <span class="nx">parent</span> <span class="o">:</span> <span class="s1">&#39;#tabs&#39;</span><span class="p">,</span>
+        <span class="nx">afterSelect</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#tab&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;选中了标签#&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">tabs</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;标签#1&#39;</span><span class="p">,</span>
+        <span class="nx">panel</span> <span class="o">:</span> <span class="s1">&#39;#tab1&#39;</span>
+<span class="p">});</span>
+<span class="nx">tabs</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;标签#2&#39;</span><span class="p">,</span>
+        <span class="nx">panel</span> <span class="o">:</span> <span class="s1">&#39;#tab2&#39;</span>
+<span class="p">});</span>
+<span class="nx">tabs</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;标签#3&#39;</span><span class="p">,</span>
+        <span class="nx">panel</span> <span class="o">:</span> <span class="s1">&#39;#tab3&#39;</span>
+<span class="p">});</span>
+<span class="nx">tabs</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="uploadbutton.html" title="上传按钮(UplaodButton) API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dialog.html" title="弹出窗口(Dialog) API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/tabs.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>

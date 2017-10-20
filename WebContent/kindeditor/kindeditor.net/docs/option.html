@@ -1,0 +1,936 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/option.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="更改编辑器外观" href="theme.html" />
+    <link rel="prev" title="编辑器使用方法" href="usage.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="theme.html" title="更改编辑器外观"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="编辑器使用方法"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id60">编辑器初始化参数</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id60">编辑器初始化参数</a><ul>
+<li><a class="reference internal" href="#width" id="id61">width</a></li>
+<li><a class="reference internal" href="#height" id="id62">height</a></li>
+<li><a class="reference internal" href="#minwidth" id="id63">minWidth</a></li>
+<li><a class="reference internal" href="#minheight" id="id64">minHeight</a></li>
+<li><a class="reference internal" href="#items" id="id65">items</a></li>
+<li><a class="reference internal" href="#nodisableitems" id="id66">noDisableItems</a></li>
+<li><a class="reference internal" href="#filtermode" id="id67">filterMode</a></li>
+<li><a class="reference internal" href="#htmltags" id="id68">htmlTags</a></li>
+<li><a class="reference internal" href="#wellformatmode" id="id69">wellFormatMode</a></li>
+<li><a class="reference internal" href="#resizetype" id="id70">resizeType</a></li>
+<li><a class="reference internal" href="#themetype" id="id71">themeType</a></li>
+<li><a class="reference internal" href="#langtype" id="id72">langType</a></li>
+<li><a class="reference internal" href="#designmode" id="id73">designMode</a></li>
+<li><a class="reference internal" href="#fullscreenmode" id="id74">fullscreenMode</a></li>
+<li><a class="reference internal" href="#basepath" id="id75">basePath</a></li>
+<li><a class="reference internal" href="#themespath" id="id76">themesPath</a></li>
+<li><a class="reference internal" href="#pluginspath" id="id77">pluginsPath</a></li>
+<li><a class="reference internal" href="#langpath" id="id78">langPath</a></li>
+<li><a class="reference internal" href="#minchangesize" id="id79">minChangeSize</a></li>
+<li><a class="reference internal" href="#urltype" id="id80">urlType</a></li>
+<li><a class="reference internal" href="#newlinetag" id="id81">newlineTag</a></li>
+<li><a class="reference internal" href="#pastetype" id="id82">pasteType</a></li>
+<li><a class="reference internal" href="#dialogaligntype" id="id83">dialogAlignType</a></li>
+<li><a class="reference internal" href="#shadowmode" id="id84">shadowMode</a></li>
+<li><a class="reference internal" href="#zindex" id="id85">zIndex</a></li>
+<li><a class="reference internal" href="#usecontextmenu" id="id86">useContextmenu</a></li>
+<li><a class="reference internal" href="#synctype" id="id87">syncType</a></li>
+<li><a class="reference internal" href="#indentchar" id="id88">indentChar</a></li>
+<li><a class="reference internal" href="#csspath" id="id89">cssPath</a></li>
+<li><a class="reference internal" href="#cssdata" id="id90">cssData</a></li>
+<li><a class="reference internal" href="#bodyclass" id="id91">bodyClass</a></li>
+<li><a class="reference internal" href="#colortable" id="id92">colorTable</a></li>
+<li><a class="reference internal" href="#aftercreate" id="id93">afterCreate</a></li>
+<li><a class="reference internal" href="#afterchange" id="id94">afterChange</a></li>
+<li><a class="reference internal" href="#aftertab" id="id95">afterTab</a></li>
+<li><a class="reference internal" href="#afterfocus" id="id96">afterFocus</a></li>
+<li><a class="reference internal" href="#afterblur" id="id97">afterBlur</a></li>
+<li><a class="reference internal" href="#afterupload" id="id98">afterUpload</a></li>
+<li><a class="reference internal" href="#uploadjson" id="id99">uploadJson</a></li>
+<li><a class="reference internal" href="#filemanagerjson" id="id100">fileManagerJson</a></li>
+<li><a class="reference internal" href="#allowpreviewemoticons" id="id101">allowPreviewEmoticons</a></li>
+<li><a class="reference internal" href="#allowimageupload" id="id102">allowImageUpload</a></li>
+<li><a class="reference internal" href="#allowflashupload" id="id103">allowFlashUpload</a></li>
+<li><a class="reference internal" href="#allowmediaupload" id="id104">allowMediaUpload</a></li>
+<li><a class="reference internal" href="#allowfileupload" id="id105">allowFileUpload</a></li>
+<li><a class="reference internal" href="#allowfilemanager" id="id106">allowFileManager</a></li>
+<li><a class="reference internal" href="#fontsizetable" id="id107">fontSizeTable</a></li>
+<li><a class="reference internal" href="#imagetabindex" id="id108">imageTabIndex</a></li>
+<li><a class="reference internal" href="#formatuploadurl" id="id109">formatUploadUrl</a></li>
+<li><a class="reference internal" href="#fullscreenshortcut" id="id110">fullscreenShortcut</a></li>
+<li><a class="reference internal" href="#extrafileuploadparams" id="id111">extraFileUploadParams</a></li>
+<li><a class="reference internal" href="#filepostname" id="id112">filePostName</a></li>
+<li><a class="reference internal" href="#filldescafteruploadimage" id="id113">fillDescAfterUploadImage</a></li>
+<li><a class="reference internal" href="#afterselectfile" id="id114">afterSelectFile</a></li>
+<li><a class="reference internal" href="#pagebreakhtml" id="id115">pagebreakHtml</a></li>
+<li><a class="reference internal" href="#allowimageremote" id="id116">allowImageRemote</a></li>
+<li><a class="reference internal" href="#autoheightmode" id="id117">autoHeightMode</a></li>
+<li><a class="reference internal" href="#fixtoolbar" id="id118">fixToolBar</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="width">
+<span id="index-0"></span><span id="id2"></span><h2><a class="toc-backref" href="#id61">width</a><a class="headerlink" href="#width" title="Permalink to this headline">¶</a></h2>
+<p>编辑器的宽度，可以设置px或%，比textarea输入框样式表宽度优先度高。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: textarea输入框的宽度</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">width</span> <span class="o">:</span> <span class="s1">&#39;700px&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="height">
+<span id="index-1"></span><span id="id3"></span><h2><a class="toc-backref" href="#id62">height</a><a class="headerlink" href="#height" title="Permalink to this headline">¶</a></h2>
+<p>编辑器的高度，只能设置px，比textarea输入框样式表高度优先度高。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: textarea输入框的高度</li>
+</ul>
+</div>
+<div class="section" id="minwidth">
+<span id="index-2"></span><span id="id4"></span><h2><a class="toc-backref" href="#id63">minWidth</a><a class="headerlink" href="#minwidth" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器最小宽度，单位为px。</p>
+<ul class="simple">
+<li>数据类型: Int</li>
+<li>默认值: 650</li>
+</ul>
+</div>
+<div class="section" id="minheight">
+<span id="index-3"></span><span id="id5"></span><h2><a class="toc-backref" href="#id64">minHeight</a><a class="headerlink" href="#minheight" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器最小高度，单位为px。</p>
+<ul class="simple">
+<li>数据类型: Int</li>
+<li>默认值: 100</li>
+</ul>
+</div>
+<div class="section" id="items">
+<span id="index-4"></span><span id="id6"></span><h2><a class="toc-backref" href="#id65">items</a><a class="headerlink" href="#items" title="Permalink to this headline">¶</a></h2>
+<p>配置编辑器的工具栏，其中&#8221;/&#8221;表示换行，&#8221;|&#8221;表示分隔符。</p>
+<ul class="simple">
+<li>数据类型: Array</li>
+<li>默认值:</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">[</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;undo&#39;</span><span class="p">,</span> <span class="s1">&#39;redo&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;preview&#39;</span><span class="p">,</span> <span class="s1">&#39;print&#39;</span><span class="p">,</span> <span class="s1">&#39;template&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;cut&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="s1">&#39;paste&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;plainpaste&#39;</span><span class="p">,</span> <span class="s1">&#39;wordpaste&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;justifyleft&#39;</span><span class="p">,</span> <span class="s1">&#39;justifycenter&#39;</span><span class="p">,</span> <span class="s1">&#39;justifyright&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;justifyfull&#39;</span><span class="p">,</span> <span class="s1">&#39;insertorderedlist&#39;</span><span class="p">,</span> <span class="s1">&#39;insertunorderedlist&#39;</span><span class="p">,</span> <span class="s1">&#39;indent&#39;</span><span class="p">,</span> <span class="s1">&#39;outdent&#39;</span><span class="p">,</span> <span class="s1">&#39;subscript&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;superscript&#39;</span><span class="p">,</span> <span class="s1">&#39;clearhtml&#39;</span><span class="p">,</span> <span class="s1">&#39;quickformat&#39;</span><span class="p">,</span> <span class="s1">&#39;selectall&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;fullscreen&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;formatblock&#39;</span><span class="p">,</span> <span class="s1">&#39;fontname&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;forecolor&#39;</span><span class="p">,</span> <span class="s1">&#39;hilitecolor&#39;</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;strikethrough&#39;</span><span class="p">,</span> <span class="s1">&#39;lineheight&#39;</span><span class="p">,</span> <span class="s1">&#39;removeformat&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;multiimage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;flash&#39;</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="s1">&#39;insertfile&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;emoticons&#39;</span><span class="p">,</span> <span class="s1">&#39;baidumap&#39;</span><span class="p">,</span> <span class="s1">&#39;pagebreak&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;anchor&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="s1">&#39;unlink&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>source</td>
+<td>HTML代码</td>
+</tr>
+<tr class="row-even"><td>preview</td>
+<td>预览</td>
+</tr>
+<tr class="row-odd"><td>undo</td>
+<td>后退</td>
+</tr>
+<tr class="row-even"><td>redo</td>
+<td>前进</td>
+</tr>
+<tr class="row-odd"><td>cut</td>
+<td>剪切</td>
+</tr>
+<tr class="row-even"><td>copy</td>
+<td>复制</td>
+</tr>
+<tr class="row-odd"><td>paste</td>
+<td>粘贴</td>
+</tr>
+<tr class="row-even"><td>plainpaste</td>
+<td>粘贴为无格式文本</td>
+</tr>
+<tr class="row-odd"><td>wordpaste</td>
+<td>从Word粘贴</td>
+</tr>
+<tr class="row-even"><td>selectall</td>
+<td>全选</td>
+</tr>
+<tr class="row-odd"><td>justifyleft</td>
+<td>左对齐</td>
+</tr>
+<tr class="row-even"><td>justifycenter</td>
+<td>居中</td>
+</tr>
+<tr class="row-odd"><td>justifyright</td>
+<td>右对齐</td>
+</tr>
+<tr class="row-even"><td>justifyfull</td>
+<td>两端对齐</td>
+</tr>
+<tr class="row-odd"><td>insertorderedlist</td>
+<td>编号</td>
+</tr>
+<tr class="row-even"><td>insertunorderedlist</td>
+<td>项目符号</td>
+</tr>
+<tr class="row-odd"><td>indent</td>
+<td>增加缩进</td>
+</tr>
+<tr class="row-even"><td>outdent</td>
+<td>减少缩进</td>
+</tr>
+<tr class="row-odd"><td>subscript</td>
+<td>下标</td>
+</tr>
+<tr class="row-even"><td>superscript</td>
+<td>上标</td>
+</tr>
+<tr class="row-odd"><td>formatblock</td>
+<td>段落</td>
+</tr>
+<tr class="row-even"><td>fontname</td>
+<td>字体</td>
+</tr>
+<tr class="row-odd"><td>fontsize</td>
+<td>文字大小</td>
+</tr>
+<tr class="row-even"><td>forecolor</td>
+<td>文字颜色</td>
+</tr>
+<tr class="row-odd"><td>hilitecolor</td>
+<td>文字背景</td>
+</tr>
+<tr class="row-even"><td>bold</td>
+<td>粗体</td>
+</tr>
+<tr class="row-odd"><td>italic</td>
+<td>斜体</td>
+</tr>
+<tr class="row-even"><td>underline</td>
+<td>下划线</td>
+</tr>
+<tr class="row-odd"><td>strikethrough</td>
+<td>删除线</td>
+</tr>
+<tr class="row-even"><td>removeformat</td>
+<td>删除格式</td>
+</tr>
+<tr class="row-odd"><td>image</td>
+<td>图片</td>
+</tr>
+<tr class="row-even"><td>flash</td>
+<td>Flash</td>
+</tr>
+<tr class="row-odd"><td>media</td>
+<td>视音频</td>
+</tr>
+<tr class="row-even"><td>table</td>
+<td>表格</td>
+</tr>
+<tr class="row-odd"><td>hr</td>
+<td>插入横线</td>
+</tr>
+<tr class="row-even"><td>emoticons</td>
+<td>插入表情</td>
+</tr>
+<tr class="row-odd"><td>link</td>
+<td>超级链接</td>
+</tr>
+<tr class="row-even"><td>unlink</td>
+<td>取消超级链接</td>
+</tr>
+<tr class="row-odd"><td>fullscreen</td>
+<td>全屏显示</td>
+</tr>
+<tr class="row-even"><td>about</td>
+<td>关于</td>
+</tr>
+<tr class="row-odd"><td>print</td>
+<td>打印</td>
+</tr>
+<tr class="row-even"><td>code</td>
+<td>插入程序代码</td>
+</tr>
+<tr class="row-odd"><td>map</td>
+<td>Google地图</td>
+</tr>
+<tr class="row-even"><td>baidumap</td>
+<td>百度地图</td>
+</tr>
+<tr class="row-odd"><td>lineheight</td>
+<td>行距</td>
+</tr>
+<tr class="row-even"><td>clearhtml</td>
+<td>清理HTML代码</td>
+</tr>
+<tr class="row-odd"><td>pagebreak</td>
+<td>插入分页符</td>
+</tr>
+<tr class="row-even"><td>quickformat</td>
+<td>一键排版</td>
+</tr>
+<tr class="row-odd"><td>insertfile</td>
+<td>插入文件</td>
+</tr>
+<tr class="row-even"><td>template</td>
+<td>插入模板</td>
+</tr>
+<tr class="row-odd"><td>anchor</td>
+<td>插入锚点</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nodisableitems">
+<span id="index-5"></span><span id="id7"></span><h2><a class="toc-backref" href="#id66">noDisableItems</a><a class="headerlink" href="#nodisableitems" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#designmode"><span class="std std-ref">designMode</span></a> 为false时，要保留的工具栏图标。</p>
+<ul class="simple">
+<li>数据类型: Array</li>
+<li>默认值: [&#8216;source&#8217;, &#8216;fullscreen&#8217;]</li>
+</ul>
+</div>
+<div class="section" id="filtermode">
+<span id="index-6"></span><span id="id8"></span><h2><a class="toc-backref" href="#id67">filterMode</a><a class="headerlink" href="#filtermode" title="Permalink to this headline">¶</a></h2>
+<p>true时根据 <a class="reference internal" href="#htmltags"><span class="std std-ref">htmlTags</span></a> 过滤HTML代码，false时允许输入任何代码。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.1版本开始默认值为true。</p>
+</div>
+</div>
+<div class="section" id="htmltags">
+<span id="index-7"></span><span id="id9"></span><h2><a class="toc-backref" href="#id68">htmlTags</a><a class="headerlink" href="#htmltags" title="Permalink to this headline">¶</a></h2>
+<p>指定要保留的HTML标记和属性。Object的key为HTML标签名，value为HTML属性数组，&#8221;.&#8221;开始的属性表示style属性。</p>
+<ul class="simple">
+<li>数据类型: Object</li>
+<li>默认值:</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="nx">font</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="s1">&#39;.background-color&#39;</span><span class="p">],</span>
+        <span class="nx">span</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s1">&#39;.color&#39;</span><span class="p">,</span> <span class="s1">&#39;.background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-family&#39;</span><span class="p">,</span> <span class="s1">&#39;.background&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.font-weight&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-style&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-decoration&#39;</span><span class="p">,</span> <span class="s1">&#39;.vertical-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.line-height&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">div</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="s1">&#39;.border&#39;</span><span class="p">,</span> <span class="s1">&#39;.margin&#39;</span><span class="p">,</span> <span class="s1">&#39;.padding&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.color&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-family&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-weight&#39;</span><span class="p">,</span> <span class="s1">&#39;.background&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.font-style&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-decoration&#39;</span><span class="p">,</span> <span class="s1">&#39;.vertical-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.margin-left&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">table</span><span class="o">:</span> <span class="p">[</span>
+                <span class="s1">&#39;border&#39;</span><span class="p">,</span> <span class="s1">&#39;cellspacing&#39;</span><span class="p">,</span> <span class="s1">&#39;cellpadding&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="s1">&#39;bordercolor&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.padding&#39;</span><span class="p">,</span> <span class="s1">&#39;.margin&#39;</span><span class="p">,</span> <span class="s1">&#39;.border&#39;</span><span class="p">,</span> <span class="s1">&#39;bgcolor&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.color&#39;</span><span class="p">,</span> <span class="s1">&#39;.background-color&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-family&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-weight&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-style&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-decoration&#39;</span><span class="p">,</span> <span class="s1">&#39;.background&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.width&#39;</span><span class="p">,</span> <span class="s1">&#39;.height&#39;</span><span class="p">,</span> <span class="s1">&#39;.border-collapse&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;td,th&#39;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="s1">&#39;valign&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;colspan&#39;</span><span class="p">,</span> <span class="s1">&#39;rowspan&#39;</span><span class="p">,</span> <span class="s1">&#39;bgcolor&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.text-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.color&#39;</span><span class="p">,</span> <span class="s1">&#39;.background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-family&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-weight&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.font-style&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-decoration&#39;</span><span class="p">,</span> <span class="s1">&#39;.vertical-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.background&#39;</span><span class="p">,</span> <span class="s1">&#39;.border&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">a</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span>
+        <span class="nx">embed</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;loop&#39;</span><span class="p">,</span> <span class="s1">&#39;autostart&#39;</span><span class="p">,</span> <span class="s1">&#39;quality&#39;</span><span class="p">,</span> <span class="s1">&#39;.width&#39;</span><span class="p">,</span> <span class="s1">&#39;.height&#39;</span><span class="p">,</span> <span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="s1">&#39;allowscriptaccess&#39;</span><span class="p">],</span>
+        <span class="nx">img</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;border&#39;</span><span class="p">,</span> <span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="s1">&#39;.width&#39;</span><span class="p">,</span> <span class="s1">&#39;.height&#39;</span><span class="p">,</span> <span class="s1">&#39;.border&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6&#39;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.color&#39;</span><span class="p">,</span> <span class="s1">&#39;.background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-family&#39;</span><span class="p">,</span> <span class="s1">&#39;.background&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;.font-weight&#39;</span><span class="p">,</span> <span class="s1">&#39;.font-style&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-decoration&#39;</span><span class="p">,</span> <span class="s1">&#39;.vertical-align&#39;</span><span class="p">,</span> <span class="s1">&#39;.text-indent&#39;</span><span class="p">,</span> <span class="s1">&#39;.margin-left&#39;</span>
+        <span class="p">],</span>
+        <span class="nx">pre</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">],</span>
+        <span class="nx">hr</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;.page-break-after&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del&#39;</span> <span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wellformatmode">
+<span id="index-8"></span><span id="id10"></span><h2><a class="toc-backref" href="#id69">wellFormatMode</a><a class="headerlink" href="#wellformatmode" title="Permalink to this headline">¶</a></h2>
+<p>true时美化HTML数据。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="resizetype">
+<span id="index-9"></span><span id="id11"></span><h2><a class="toc-backref" href="#id70">resizeType</a><a class="headerlink" href="#resizetype" title="Permalink to this headline">¶</a></h2>
+<p>2或1或0，2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动。</p>
+<ul class="simple">
+<li>数据类型: Int</li>
+<li>默认值: 2</li>
+</ul>
+</div>
+<div class="section" id="themetype">
+<span id="index-10"></span><span id="id12"></span><h2><a class="toc-backref" href="#id71">themeType</a><a class="headerlink" href="#themetype" title="Permalink to this headline">¶</a></h2>
+<p>指定主题风格，可设置&#8221;default&#8221;、&#8221;simple&#8221;，指定simple时需要引入simple.css。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;default&#8221;</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../themes/default/default.css&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../themes/simple/simple.css&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../kindeditor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../lang/zh-CN.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="kd">var</span> <span class="nx">editor</span><span class="p">;</span>
+        <span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">editor</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                        <span class="nx">themeType</span> <span class="o">:</span> <span class="s1">&#39;simple&#39;</span>
+                <span class="p">});</span>
+        <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="langtype">
+<span id="index-11"></span><span id="id13"></span><h2><a class="toc-backref" href="#id72">langType</a><a class="headerlink" href="#langtype" title="Permalink to this headline">¶</a></h2>
+<p>指定语言，可设置&#8221;en&#8221;、&#8221;zh-CN&#8221;，需要引入lang/[langType].js。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;zh-CN&#8221;</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../themes/default/default.css&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../kindeditor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../lang/en.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="kd">var</span> <span class="nx">editor</span><span class="p">;</span>
+        <span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">editor</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                        <span class="nx">langType</span> <span class="o">:</span> <span class="s1">&#39;en&#39;</span>
+                <span class="p">});</span>
+        <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="designmode">
+<span id="index-12"></span><span id="id14"></span><h2><a class="toc-backref" href="#id73">designMode</a><a class="headerlink" href="#designmode" title="Permalink to this headline">¶</a></h2>
+<p>可视化模式或代码模式</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="fullscreenmode">
+<span id="index-13"></span><span id="id15"></span><h2><a class="toc-backref" href="#id74">fullscreenMode</a><a class="headerlink" href="#fullscreenmode" title="Permalink to this headline">¶</a></h2>
+<p>true时加载编辑器后变成全屏模式。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: false</li>
+</ul>
+</div>
+<div class="section" id="basepath">
+<span id="index-14"></span><span id="id16"></span><h2><a class="toc-backref" href="#id75">basePath</a><a class="headerlink" href="#basepath" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器的根目录路径。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: 根据kindeditor.js文件名自动获取</li>
+</ul>
+</div>
+<div class="section" id="themespath">
+<span id="index-15"></span><span id="id17"></span><h2><a class="toc-backref" href="#id76">themesPath</a><a class="headerlink" href="#themespath" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器的themes目录路径。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: basePath + &#8216;themes/&#8217;</li>
+</ul>
+</div>
+<div class="section" id="pluginspath">
+<span id="index-16"></span><span id="id18"></span><h2><a class="toc-backref" href="#id77">pluginsPath</a><a class="headerlink" href="#pluginspath" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器的plugins目录路径。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: basePath + &#8216;plugins/&#8217;</li>
+</ul>
+</div>
+<div class="section" id="langpath">
+<span id="index-17"></span><span id="id19"></span><h2><a class="toc-backref" href="#id78">langPath</a><a class="headerlink" href="#langpath" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器的lang目录路径。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: basePath + &#8216;lang/&#8217;</li>
+</ul>
+</div>
+<div class="section" id="minchangesize">
+<span id="index-18"></span><span id="id20"></span><h2><a class="toc-backref" href="#id79">minChangeSize</a><a class="headerlink" href="#minchangesize" title="Permalink to this headline">¶</a></h2>
+<p>undo/redo文字输入最小变化长度，当输入的文字变化小于这个长度时不会添加到undo记录里。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: 5</li>
+</ul>
+</div>
+<div class="section" id="urltype">
+<span id="index-19"></span><span id="id21"></span><h2><a class="toc-backref" href="#id80">urlType</a><a class="headerlink" href="#urltype" title="Permalink to this headline">¶</a></h2>
+<p>改变站内本地URL，可设置&#8221;&#8220;、&#8221;relative&#8221;、&#8221;absolute&#8221;、&#8221;domain&#8221;。空为不修改URL，relative为相对路径，absolute为绝对路径，domain为带域名的绝对路径。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;&#8221;</li>
+</ul>
+</div>
+<div class="section" id="newlinetag">
+<span id="index-20"></span><span id="id22"></span><h2><a class="toc-backref" href="#id81">newlineTag</a><a class="headerlink" href="#newlinetag" title="Permalink to this headline">¶</a></h2>
+<p>设置回车换行标签，可设置&#8221;p&#8221;、&#8221;br&#8221;。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;p&#8221;</li>
+</ul>
+</div>
+<div class="section" id="pastetype">
+<span id="index-21"></span><span id="id23"></span><h2><a class="toc-backref" href="#id82">pasteType</a><a class="headerlink" href="#pastetype" title="Permalink to this headline">¶</a></h2>
+<p>设置粘贴类型，0:禁止粘贴, 1:纯文本粘贴, 2:HTML粘贴</p>
+<ul class="simple">
+<li>数据类型: Int</li>
+<li>默认值: 2</li>
+</ul>
+</div>
+<div class="section" id="dialogaligntype">
+<span id="index-22"></span><span id="id24"></span><h2><a class="toc-backref" href="#id83">dialogAlignType</a><a class="headerlink" href="#dialogaligntype" title="Permalink to this headline">¶</a></h2>
+<p>设置弹出框(dialog)的对齐类型，可设置&#8221;&#8220;、&#8221;page&#8221;，指定page时按当前页面居中，指定空时按编辑器居中。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;page&#8221;</li>
+</ul>
+</div>
+<div class="section" id="shadowmode">
+<span id="index-23"></span><span id="id25"></span><h2><a class="toc-backref" href="#id84">shadowMode</a><a class="headerlink" href="#shadowmode" title="Permalink to this headline">¶</a></h2>
+<p>true时弹出层(dialog)显示阴影。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="zindex">
+<span id="index-24"></span><span id="id26"></span><h2><a class="toc-backref" href="#id85">zIndex</a><a class="headerlink" href="#zindex" title="Permalink to this headline">¶</a></h2>
+<p>指定弹出层的基准z-index。</p>
+<ul class="simple">
+<li>数据类型: Int</li>
+<li>默认值: 811213</li>
+</ul>
+</div>
+<div class="section" id="usecontextmenu">
+<span id="index-25"></span><span id="id27"></span><h2><a class="toc-backref" href="#id86">useContextmenu</a><a class="headerlink" href="#usecontextmenu" title="Permalink to this headline">¶</a></h2>
+<p>true时使用右键菜单，false时屏蔽右键菜单。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="synctype">
+<span id="index-26"></span><span id="id28"></span><h2><a class="toc-backref" href="#id87">syncType</a><a class="headerlink" href="#synctype" title="Permalink to this headline">¶</a></h2>
+<p>同步数据的方式，可设置&#8221;&#8220;、&#8221;form&#8221;，值为form时提交form时自动同步，空时不会自动同步。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;form&#8221;</li>
+</ul>
+</div>
+<div class="section" id="indentchar">
+<span id="index-27"></span><span id="id29"></span><h2><a class="toc-backref" href="#id88">indentChar</a><a class="headerlink" href="#indentchar" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#wellformatmode"><span class="std std-ref">wellFormatMode</span></a> 为true时，HTML代码缩进字符。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;\t&#8221;</li>
+</ul>
+</div>
+<div class="section" id="csspath">
+<span id="index-28"></span><span id="id30"></span><h2><a class="toc-backref" href="#id89">cssPath</a><a class="headerlink" href="#csspath" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器iframe document的CSS文件，用于设置可视化区域的样式。</p>
+<ul class="simple">
+<li>数据类型: String或Array</li>
+<li>默认值: 空</li>
+</ul>
+</div>
+<div class="section" id="cssdata">
+<span id="index-29"></span><span id="id31"></span><h2><a class="toc-backref" href="#id90">cssData</a><a class="headerlink" href="#cssdata" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器iframe document的CSS数据，用于设置可视化区域的样式。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: 空</li>
+</ul>
+</div>
+<div class="section" id="bodyclass">
+<span id="index-30"></span><span id="id32"></span><h2><a class="toc-backref" href="#id91">bodyClass</a><a class="headerlink" href="#bodyclass" title="Permalink to this headline">¶</a></h2>
+<p>指定编辑器iframe document body的className。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: &#8220;ke-content&#8221;</li>
+</ul>
+</div>
+<div class="section" id="colortable">
+<span id="index-31"></span><span id="id33"></span><h2><a class="toc-backref" href="#id92">colorTable</a><a class="headerlink" href="#colortable" title="Permalink to this headline">¶</a></h2>
+<p>指定取色器里的颜色。</p>
+<ul class="simple">
+<li>数据类型: Array</li>
+<li>默认值:</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;#E53333&#39;</span><span class="p">,</span> <span class="s1">&#39;#E56600&#39;</span><span class="p">,</span> <span class="s1">&#39;#FF9900&#39;</span><span class="p">,</span> <span class="s1">&#39;#64451D&#39;</span><span class="p">,</span> <span class="s1">&#39;#DFC5A4&#39;</span><span class="p">,</span> <span class="s1">&#39;#FFE500&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;#009900&#39;</span><span class="p">,</span> <span class="s1">&#39;#006600&#39;</span><span class="p">,</span> <span class="s1">&#39;#99BB00&#39;</span><span class="p">,</span> <span class="s1">&#39;#B8D100&#39;</span><span class="p">,</span> <span class="s1">&#39;#60D978&#39;</span><span class="p">,</span> <span class="s1">&#39;#00D5FF&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;#337FE5&#39;</span><span class="p">,</span> <span class="s1">&#39;#003399&#39;</span><span class="p">,</span> <span class="s1">&#39;#4C33E5&#39;</span><span class="p">,</span> <span class="s1">&#39;#9933E5&#39;</span><span class="p">,</span> <span class="s1">&#39;#CC33E5&#39;</span><span class="p">,</span> <span class="s1">&#39;#EE33EE&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;#FFFFFF&#39;</span><span class="p">,</span> <span class="s1">&#39;#CCCCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">,</span> <span class="s1">&#39;#666666&#39;</span><span class="p">,</span> <span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#000000&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aftercreate">
+<span id="index-32"></span><span id="id34"></span><h2><a class="toc-backref" href="#id93">afterCreate</a><a class="headerlink" href="#aftercreate" title="Permalink to this headline">¶</a></h2>
+<p>设置编辑器创建后执行的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 无</li>
+</ul>
+</div>
+<div class="section" id="afterchange">
+<span id="index-33"></span><span id="id35"></span><h2><a class="toc-backref" href="#id94">afterChange</a><a class="headerlink" href="#afterchange" title="Permalink to this headline">¶</a></h2>
+<p>编辑器内容发生变化后执行的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 无</li>
+</ul>
+</div>
+<div class="section" id="aftertab">
+<span id="index-34"></span><span id="id36"></span><h2><a class="toc-backref" href="#id95">afterTab</a><a class="headerlink" href="#aftertab" title="Permalink to this headline">¶</a></h2>
+<p>按下TAB键后执行的的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 插入4个空格的函数</li>
+</ul>
+</div>
+<div class="section" id="afterfocus">
+<span id="index-35"></span><span id="id37"></span><h2><a class="toc-backref" href="#id96">afterFocus</a><a class="headerlink" href="#afterfocus" title="Permalink to this headline">¶</a></h2>
+<p>编辑器聚焦(focus)时执行的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 无</li>
+</ul>
+</div>
+<div class="section" id="afterblur">
+<span id="index-36"></span><span id="id38"></span><h2><a class="toc-backref" href="#id97">afterBlur</a><a class="headerlink" href="#afterblur" title="Permalink to this headline">¶</a></h2>
+<p>编辑器失去焦点(blur)时执行的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 无</li>
+</ul>
+</div>
+<div class="section" id="afterupload">
+<span id="index-37"></span><span id="id39"></span><h2><a class="toc-backref" href="#id98">afterUpload</a><a class="headerlink" href="#afterupload" title="Permalink to this headline">¶</a></h2>
+<p>上传文件后执行的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 无</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">afterUpload</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">alert</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uploadjson">
+<span id="index-38"></span><span id="id40"></span><h2><a class="toc-backref" href="#id99">uploadJson</a><a class="headerlink" href="#uploadjson" title="Permalink to this headline">¶</a></h2>
+<p>指定上传文件的服务器端程序。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: basePath + &#8216;php/upload_json.php&#8217;</li>
+</ul>
+</div>
+<div class="section" id="filemanagerjson">
+<span id="index-39"></span><span id="id41"></span><h2><a class="toc-backref" href="#id100">fileManagerJson</a><a class="headerlink" href="#filemanagerjson" title="Permalink to this headline">¶</a></h2>
+<p>指定浏览远程图片的服务器端程序。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: basePath + &#8216;php/file_manager_json.php&#8217;</li>
+</ul>
+</div>
+<div class="section" id="allowpreviewemoticons">
+<span id="index-40"></span><span id="id42"></span><h2><a class="toc-backref" href="#id101">allowPreviewEmoticons</a><a class="headerlink" href="#allowpreviewemoticons" title="Permalink to this headline">¶</a></h2>
+<p>true时鼠标放在表情上可以预览表情。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="allowimageupload">
+<span id="index-41"></span><span id="id43"></span><h2><a class="toc-backref" href="#id102">allowImageUpload</a><a class="headerlink" href="#allowimageupload" title="Permalink to this headline">¶</a></h2>
+<p>true时显示图片上传按钮。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="allowflashupload">
+<span id="index-42"></span><span id="id44"></span><h2><a class="toc-backref" href="#id103">allowFlashUpload</a><a class="headerlink" href="#allowflashupload" title="Permalink to this headline">¶</a></h2>
+<p>true时显示Flash上传按钮。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="allowmediaupload">
+<span id="index-43"></span><span id="id45"></span><h2><a class="toc-backref" href="#id104">allowMediaUpload</a><a class="headerlink" href="#allowmediaupload" title="Permalink to this headline">¶</a></h2>
+<p>true时显示视音频上传按钮。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+</div>
+<div class="section" id="allowfileupload">
+<span id="index-44"></span><span id="id46"></span><h2><a class="toc-backref" href="#id105">allowFileUpload</a><a class="headerlink" href="#allowfileupload" title="Permalink to this headline">¶</a></h2>
+<p>true时显示文件上传按钮。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.0.6版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="allowfilemanager">
+<span id="index-45"></span><span id="id47"></span><h2><a class="toc-backref" href="#id106">allowFileManager</a><a class="headerlink" href="#allowfilemanager" title="Permalink to this headline">¶</a></h2>
+<p>true时显示浏览远程服务器按钮。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: false</li>
+</ul>
+</div>
+<div class="section" id="fontsizetable">
+<span id="index-46"></span><span id="id48"></span><h2><a class="toc-backref" href="#id107">fontSizeTable</a><a class="headerlink" href="#fontsizetable" title="Permalink to this headline">¶</a></h2>
+<p>指定文字大小。</p>
+<ul class="simple">
+<li>数据类型: Array</li>
+<li>默认值:</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;9px&#39;</span><span class="p">,</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;14px&#39;</span><span class="p">,</span> <span class="s1">&#39;16px&#39;</span><span class="p">,</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span> <span class="s1">&#39;24px&#39;</span><span class="p">,</span> <span class="s1">&#39;32px&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="imagetabindex">
+<span id="index-47"></span><span id="id49"></span><h2><a class="toc-backref" href="#id108">imageTabIndex</a><a class="headerlink" href="#imagetabindex" title="Permalink to this headline">¶</a></h2>
+<p>图片弹出层的默认显示标签索引。</p>
+<ul class="simple">
+<li>数据类型: Int</li>
+<li>默认值: 0</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.0.6版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="formatuploadurl">
+<span id="index-48"></span><span id="id50"></span><h2><a class="toc-backref" href="#id109">formatUploadUrl</a><a class="headerlink" href="#formatuploadurl" title="Permalink to this headline">¶</a></h2>
+<p>false时不会自动格式化上传后的URL。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="fullscreenshortcut">
+<span id="index-49"></span><span id="id51"></span><h2><a class="toc-backref" href="#id110">fullscreenShortcut</a><a class="headerlink" href="#fullscreenshortcut" title="Permalink to this headline">¶</a></h2>
+<p>false时禁用ESC全屏快捷键。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: false</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1版本开始支持，从4.1.2版本开始默认值为false。</p>
+</div>
+</div>
+<div class="section" id="extrafileuploadparams">
+<span id="index-50"></span><span id="id52"></span><h2><a class="toc-backref" href="#id111">extraFileUploadParams</a><a class="headerlink" href="#extrafileuploadparams" title="Permalink to this headline">¶</a></h2>
+<p>上传图片、Flash、视音频、文件时，支持添加别的参数一并传到服务器。</p>
+<ul class="simple">
+<li>数据类型: Array</li>
+<li>默认值: {}</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">extraFileUploadParams</span> <span class="o">:</span> <span class="p">{</span>
+                        <span class="nx">item_id</span> <span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+                        <span class="nx">category_id</span> <span class="o">:</span> <span class="mi">1</span>
+                <span class="p">}</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.1版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="filepostname">
+<span id="index-51"></span><span id="id53"></span><h2><a class="toc-backref" href="#id112">filePostName</a><a class="headerlink" href="#filepostname" title="Permalink to this headline">¶</a></h2>
+<p>指定上传文件form名称。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: imgFile</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.2版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="filldescafteruploadimage">
+<span id="index-52"></span><span id="id54"></span><h2><a class="toc-backref" href="#id113">fillDescAfterUploadImage</a><a class="headerlink" href="#filldescafteruploadimage" title="Permalink to this headline">¶</a></h2>
+<p>true时图片上传成功后切换到图片编辑标签，false时插入图片后关闭弹出框。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: false</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.2版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="afterselectfile">
+<span id="index-53"></span><span id="id55"></span><h2><a class="toc-backref" href="#id114">afterSelectFile</a><a class="headerlink" href="#afterselectfile" title="Permalink to this headline">¶</a></h2>
+<p>从图片空间选择文件后执行的回调函数。</p>
+<ul class="simple">
+<li>数据类型: Function</li>
+<li>默认值: 无</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.2版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="pagebreakhtml">
+<span id="index-54"></span><span id="id56"></span><h2><a class="toc-backref" href="#id115">pagebreakHtml</a><a class="headerlink" href="#pagebreakhtml" title="Permalink to this headline">¶</a></h2>
+<p>可指定分页符HTML。</p>
+<ul class="simple">
+<li>数据类型: String</li>
+<li>默认值: <cite>&lt;hr style=&#8221;page-break-after: always;&#8221; class=&#8221;ke-pagebreak&#8221; /&gt;</cite></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.3版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="allowimageremote">
+<span id="index-55"></span><span id="id57"></span><h2><a class="toc-backref" href="#id116">allowImageRemote</a><a class="headerlink" href="#allowimageremote" title="Permalink to this headline">¶</a></h2>
+<p>true时显示网络图片标签，false时不显示。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: true</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.6版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="autoheightmode">
+<span id="index-56"></span><span id="id58"></span><h2><a class="toc-backref" href="#id117">autoHeightMode</a><a class="headerlink" href="#autoheightmode" title="Permalink to this headline">¶</a></h2>
+<p>值为true，并引入autoheight.js插件时自动调整高度。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: false</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.8版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="fixtoolbar">
+<span id="index-57"></span><span id="id59"></span><h2><a class="toc-backref" href="#id118">fixToolBar</a><a class="headerlink" href="#fixtoolbar" title="Permalink to this headline">¶</a></h2>
+<p>值为true，并引入fixtoolbar.js插件时固定工具栏位置。</p>
+<ul class="simple">
+<li>数据类型: Boolean</li>
+<li>默认值: false</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="theme.html" title="更改编辑器外观"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="编辑器使用方法"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/option.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

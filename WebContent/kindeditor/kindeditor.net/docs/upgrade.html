@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/upgrade.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="变更记录" href="changelog.html" />
+    <link rel="prev" title="编辑器(Editor) API" href="editor.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="changelog.html" title="变更记录"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="editor.html" title="编辑器(Editor) API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="x4-x">
+<h1>3.x升级到4.x版本<a class="headerlink" href="#x4-x" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1. 替换文件<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>移除3.x版本文件。</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/ke3/kindeditor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>添加4.x版本文件。</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/ke4/kindeditor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/ke4/lang/zh-CN.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="javascript">
+<h2>2. 替换javascript代码<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h2>
+<p>移除3.x版本代码。</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="nx">KE</span><span class="p">.</span><span class="nx">show</span><span class="p">({</span>
+                <span class="nx">id</span> <span class="o">:</span> <span class="s1">&#39;editor_id&#39;</span><span class="p">,</span>
+                <span class="nx">resizeMode</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="nx">imageUploadJson</span> <span class="o">:</span> <span class="s1">&#39;../../php/upload_json.php&#39;</span> <span class="c1">// 相对于plugins/image/image.html的路径</span>
+        <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>添加4.x版本代码。</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="kd">var</span> <span class="nx">editor</span><span class="p">;</span>
+        <span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">editor</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                        <span class="nx">resizeType</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+                        <span class="nx">uploadJson</span> <span class="o">:</span> <span class="s1">&#39;../php/upload_json.php&#39;</span> <span class="c1">// 相对于当前页面的路径</span>
+                <span class="p">});</span>
+        <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>4.x修改过一些参数名，所以3.x的初始化参数不一定直接兼容4.x，具体参数请参考 <a class="reference internal" href="option.html"><span class="doc">编辑器初始化参数</span></a> 。</li>
+<li>4.x通过K.create返回的editor对象调用编辑器API，具体方法请参考 <a class="reference internal" href="editor.html"><span class="doc">编辑器(Editor) API</span></a> 。</li>
+<li>4.x插件采用js动态加载机制，uploadJson和fileManagerJson是相对于当前页面的路径，使用相对路径时需要注意。</li>
+<li>如果需要在其它函数内调用editor对象，可以将editor对象设置成全局变量。</li>
+</ul>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nb">window</span><span class="p">.</span><span class="nx">EditorObject</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="c1">//取得编辑器内容</span>
+        <span class="kd">function</span> <span class="nx">getEditorData</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">EditorObject</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="changelog.html" title="变更记录"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="editor.html" title="编辑器(Editor) API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/upgrade.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

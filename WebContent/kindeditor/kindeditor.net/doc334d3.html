@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=api by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>文档 - KindEditor - 在线HTML编辑器</title>
+		<meta name="description" content="编辑器调用方法、编辑器初始化参数、添加自定义插件、API文档、常见问题" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="css/mainfd47.css?t=20140215.css" rel="stylesheet" />
+		<link href="prettify/prettifye51e.css?t=20110528.css" rel="stylesheet" />
+		<link href="ke4/themes/default/default79ed.css?t=20160331.css" rel="stylesheet" />
+		<script src="ke4/kindeditor-all-min53a2.js?t=20160331.js"></script>
+		<script src="prettify/prettify8b79.js?t=20110528.js"></script>
+		<script>
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-739852-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="header_top">
+		<a href="demo.html" id="logo" title="返回首页"><img src="images/logo.png" width="200" height="34" alt="KindEditor" /></a>
+		<ul id="nav">
+			<li><a href="about.html">关于</a></li>
+			<li><a href="demo.html">演示</a></li>
+			<li><a href="down.html">下载</a></li>
+			<li class="active"><a href="doc.html">文档</a></li>
+			<li><a href="case.html">成功案例</a></li>
+			<li><a href="http://kindeditor.org/">English</a></li>
+		</ul>
+	</div>
+
+
+
+
+<div id="header_bottom">
+	<div id="slider_container">
+		<h1 class="yahei h_fix">文档 <span>Documentation</span></h1>
+	</div>
+</div>
+</div>
+
+<div id="body">
+	<div id="body_top"></div>
+	<div id="body_middle">
+		<ul id="breadcrumb">
+			<li class="t">当前位置: </li>
+			<li><a href="demo.html">首页</a> &nbsp;&gt;</li>
+			<li>文档</li>
+		</ul>
+
+		<div class="doc-navi">
+			<h1 class="yahei h_fix">文档 <span>Documentation</span></h1> 
+			<ul class="list">
+				<li><a href="doc3.html">编辑器调用方法</a></li>
+				<li><a href="doc39076.html?cmd=config">编辑器初始化参数</a></li>
+				<li><a href="doc3ae65.html?cmd=plugin">添加自定义插件</a></li>
+				<li><a href="doc334d3.html?cmd=api">API文档</a></li>
+				<li><a href="doc3a425.html?cmd=qna">常见问题</a></li>
+			</ul>
+		</div>
+
+
+
+<div class="myblock">
+	<div class="header">一、变量</div>
+	<ol>
+		<li>
+			<strong>KE.scriptPath</strong><br />
+			kindeditor.js的路径。<br />
+			数据类型：String<br />
+		</li>
+		<li>
+			<strong>KE.browser</strong><br />
+			浏览器类型和版本，分别为KE.browser.IE、KE.browser.WEBKIT、KE.browser.GECKO、KE.browser.OPERA、KE.browser.VERSION。<br />
+			数据类型：Object<br />
+			注：3.4以前版本直接返回字符串，分别为"IE"、"WEBKIT"、"GECKO"、"OPERA"。<br />
+		</li>
+		<li>
+			<strong>KE.g[id].iframeDoc</strong><br />
+			编辑区域的iframe对象。<br />
+			数据类型：Element<br />
+		</li>
+		<li>
+			<strong>KE.g[id].keSel</strong><br />
+			当前选中信息的KE.selection对象，id为编辑器ID。<br />
+			数据类型：Object<br />
+		</li>
+		<li>
+			<strong>KE.g[id].keRange</strong><br />
+			当前选中信息的KE.range对象，id为编辑器ID。<br />
+			数据类型：Object<br />
+		</li>
+		<li>
+			<strong>KE.g[id].sel</strong><br />
+			当前选中信息的浏览器原生selection对象，id为编辑器ID。<br />
+			数据类型：Object<br />
+		</li>
+		<li>
+			<strong>KE.g[id].range</strong><br />
+			当前选中信息的浏览器原生range对象，id为编辑器ID。<br />
+			数据类型：Object<br />
+		</li>
+	</ol>
+</div>
+
+<div class="myblock">
+	<div class="header">二、函数</div>
+	<ol>
+		<li>
+			<strong>KE.show(config)</strong><br />
+			初始化并创建编辑器。执行本函数时先调用KE.init设置初始化参数，然后在DOM加载完成后执行KE.create。<br />
+			参数：<br />
+			config：Object，编辑器属性集合，具体请参考编辑器属性<br />
+			返回值：无<br />
+		</li>
+		<li>
+			<strong>KE.init(config)</strong><br />
+			设置编辑器的初始化参数，loadStyleMode为true时自动加载CSS文件。<br />
+			参数：<br />
+			config：Object，编辑器属性集合，具体请参考编辑器属性<br />
+			返回值：无<br />
+		</li>
+		<li>
+			<strong>KE.create(id, mode)</strong><br />
+			创建编辑器。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			mode：Int，可选参数，指定1时在body下面创建编辑器，0或未指定时在TEXTAREA前面创建编辑器。<br />
+			返回值：无<br />
+		</li>
+		<li>
+			<strong>KE.remove(id, mode)</strong><br />
+			移除编辑器。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			mode：Int，可选参数，指定1时移除在body下面的编辑器，0或未指定时移除在TEXTAREA前面的编辑器。<br />
+			返回值：无<br />
+		</li>
+		<li>
+			<strong>KE.html(id)</strong><br />
+			取得编辑器的HTML内容。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：<br />
+			String，HTML字符串<br />
+			注: 3.5版本开始支持，旧版本可以使用KE.util.getData(id)。<br />
+		</li>
+		<li>
+			<strong>KE.html(id, val)</strong><br />
+			设置编辑器的HTML内容。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			val: String，HTML字符串<br />
+			返回值：无<br />
+			注: 3.5版本开始支持，旧版本可以使用KE.util.setFullHtml(id, val)。<br />
+		</li>
+		<li>
+			<strong>KE.text(id)</strong><br />
+			取得编辑器的纯文本内容。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：<br />
+			String，去除HTML代码后的文本<br />
+			注: 3.5版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.text(id, val)</strong><br />
+			设置编辑器的内容，直接显示HTML代码。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			val: String，文本<br />
+			返回值：无<br />
+			注: 3.5版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.selectedHtml(id)</strong><br />
+			取得当前被选中的HTML内容。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：<br />
+			String，HTML字符串<br />
+			注: 3.5版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.count(id, mode)</strong><br />
+			取得编辑器内容的文字数量。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			mode：String，可选参数，默认值也"html"，mode为"html"时取得字数包含HTML代码，mode为"text"时只包含纯文本、IMG、EMBED。<br />
+			返回值：<br />
+			Int，文字数量<br />
+			注: 3.5版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.isEmpty(id)</strong><br />
+			判断编辑器是否有可见内容，比如文本、图片、视频。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：Boolean<br />
+			注: 3.5版本开始支持，旧版本可以使用KE.util.isEmpty(id)。<br />
+		</li>
+		<li>
+			<strong>KE.insertHtml(id, val)</strong><br />
+			将指定的HTML内容插入到编辑区域里的光标处。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			val: String，HTML字符串<br />
+			返回值：无<br />
+			注: 3.5版本开始支持，旧版本可以使用KE.util.insertHtml(id, val)。<br />
+		</li>
+		<li>
+			<strong>KE.appendHtml(id, val)</strong><br />
+			将指定的HTML内容添加到编辑区域最后位置。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			val: String，HTML字符串<br />
+			返回值：无<br />
+			注: 3.5版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.focus(id)</strong><br />
+			编辑器聚焦。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：无<br />
+			注: 3.5版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.blur(id)</strong><br />
+			编辑器失去焦点。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：无<br />
+			注: 3.5.3版本开始支持。<br />
+		</li>
+		<li>
+			<strong>KE.sync(id)</strong><br />
+			将编辑器的内容设置到原来的TEXTAREA控件里。<br />
+			参数：<br />
+			id：String，编辑器的ID<br />
+			返回值：无<br />
+			注: 3.5.3版本开始支持，旧版本可以使用KE.util.setData(id)。<br />
+		</li>
+	</ol>
+</div>
+
+<div class="clear"></div>
+
+</div>
+<div id="body_bottom"></div>
+</div>
+
+<style>
+	#cnzz_stat_icon_253716 {
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		vertical-align: top;
+	}
+</style>
+<div id="footer">
+	<div id="copy">
+		<div>Copyright &copy; kindeditor.net &nbsp;
+			<a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备13006566号-2</a> &nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_253716'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D253716' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=api by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>
+
+
+
+
+

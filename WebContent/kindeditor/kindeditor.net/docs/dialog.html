@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/dialog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="Tabs API" href="tabs.html" />
+    <link rel="prev" title="取色器(ColorPicker) API" href="colorpicker.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tabs.html" title="Tabs API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="colorpicker.html" title="取色器(ColorPicker) API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dialog-api">
+<h1><a class="toc-backref" href="#id1">弹出窗口(Dialog) API</a><a class="headerlink" href="#dialog-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#dialog-api" id="id1">弹出窗口(Dialog) API</a><ul>
+<li><a class="reference internal" href="#k-dialog-options" id="id2">K.dialog(options)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-dialog-options">
+<span id="k-dialog"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.dialog(options)</a><a class="headerlink" href="#k-dialog-options" title="Permalink to this headline">¶</a></h2>
+<p>创建弹出窗口。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object options: 配置信息</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KDialog</p>
+</li>
+<li><p class="first">继承: KWidget ( <a class="reference internal" href="widget.html#k-widget"><span class="std std-ref">K.widget(options)</span></a> )</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">dialog</span><span class="p">({</span>
+        <span class="nx">width</span> <span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;测试窗口&#39;</span><span class="p">,</span>
+        <span class="nx">body</span> <span class="o">:</span> <span class="s1">&#39;&lt;div style=&quot;margin:10px;&quot;&gt;&lt;strong&gt;内容&lt;/strong&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+        <span class="nx">closeBtn</span> <span class="o">:</span> <span class="p">{</span>
+                <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;关闭&#39;</span><span class="p">,</span>
+                <span class="nx">click</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">dialog</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+                <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">yesBtn</span> <span class="o">:</span> <span class="p">{</span>
+                <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;确定&#39;</span><span class="p">,</span>
+                <span class="nx">click</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">noBtn</span> <span class="o">:</span> <span class="p">{</span>
+                <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;取消&#39;</span><span class="p">,</span>
+                <span class="nx">click</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">dialog</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tabs.html" title="Tabs API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="colorpicker.html" title="取色器(ColorPicker) API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/dialog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>

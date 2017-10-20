@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=qna by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>文档 - KindEditor - 在线HTML编辑器</title>
+		<meta name="description" content="编辑器调用方法、编辑器初始化参数、添加自定义插件、API文档、常见问题" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="css/mainfd47.css?t=20140215.css" rel="stylesheet" />
+		<link href="prettify/prettifye51e.css?t=20110528.css" rel="stylesheet" />
+		<link href="ke4/themes/default/default79ed.css?t=20160331.css" rel="stylesheet" />
+		<script src="ke4/kindeditor-all-min53a2.js?t=20160331.js"></script>
+		<script src="prettify/prettify8b79.js?t=20110528.js"></script>
+		<script>
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-739852-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="header_top">
+		<a href="demo.html" id="logo" title="返回首页"><img src="images/logo.png" width="200" height="34" alt="KindEditor" /></a>
+		<ul id="nav">
+			<li><a href="about.html">关于</a></li>
+			<li><a href="demo.html">演示</a></li>
+			<li><a href="down.html">下载</a></li>
+			<li class="active"><a href="doc.html">文档</a></li>
+			<li><a href="case.html">成功案例</a></li>
+			<li><a href="http://kindeditor.org/">English</a></li>
+		</ul>
+	</div>
+
+
+
+
+<div id="header_bottom">
+	<div id="slider_container">
+		<h1 class="yahei h_fix">文档 <span>Documentation</span></h1>
+	</div>
+</div>
+</div>
+
+<div id="body">
+	<div id="body_top"></div>
+	<div id="body_middle">
+		<ul id="breadcrumb">
+			<li class="t">当前位置: </li>
+			<li><a href="demo.html">首页</a> &nbsp;&gt;</li>
+			<li>文档</li>
+		</ul>
+
+		<div class="doc-navi">
+			<h1 class="yahei h_fix">文档 <span>Documentation</span></h1> 
+			<ul class="list">
+				<li><a href="doc3.html">编辑器调用方法</a></li>
+				<li><a href="doc39076.html?cmd=config">编辑器初始化参数</a></li>
+				<li><a href="doc3ae65.html?cmd=plugin">添加自定义插件</a></li>
+				<li><a href="doc334d3.html?cmd=api">API文档</a></li>
+				<li><a href="doc3a425.html?cmd=qna">常见问题</a></li>
+			</ul>
+		</div>
+
+
+
+	<div class="myblock">
+		<div class="header">常见问题</div>
+		<ol>
+			<li><a href="#001">编辑器好像是UTF-8编码的，可以在GB2312页面上使用吗？</a></li>
+			<li><a href="#002">我想通过ajax方式加载编辑器，但是加KE.show后没有效果。</a></li>
+			<li><a href="#003">为什么会丢失某些HTML标签，是不是编辑器的BUG？</a></li>
+			<li><a href="#004">调用编辑器后显示不正常，怎么调整才能不和我的页面的CSS冲突？</a></li>
+			<li><a href="#005">跨域调用后，点击插入图片或超级链接会报错。</a></li>
+			<li><a href="#006">我取不到编辑器数据，直接取得textarea的value也没用。</a></li>
+			<li><a href="#007">上传图片为什么出现"服务器发生故障。"？</a></li>
+		</ol>
+	</div>
+
+	<div class="myblock" id="001">
+		<div class="header">1. 编辑器好像是UTF-8编码的，可以在GB2312页面上使用吗？</div>
+		可以使用。有两种方法，一种方法是引入kindeditor.js文件时将script的charset属性设置成utf-8。
+		还有一种方法是直接将html/js/css文件编码都转换成GB2312编码（用Notepad++、editPlus等文本编辑器就可以转换编码），不过转换格式后升级比较困难，建议使用第一种方法。
+		<pre class="prettyprint">
+&lt;script charset="utf-8" src="/editor/kindeditor.js"&gt;&lt;/script&gt;
+</pre>
+	</div>
+
+	<div class="myblock" id="002">
+		<div class="header">2. 我想通过ajax方式加载编辑器，但是加KE.show后没有效果。</div>
+		这个需要理解KE.show和KE.create的区别。KE.show的原理是先执行KE.init设置一些变量，等DOM全部创建以后才开始执行KE.create创建编辑器。
+		如果浏览器不触发DOMContentLoaded事件（例如：点击某个按钮，通过innerHTML插入HTML等），则不能使用KE.show，需要直接调用KE.init和KE.create。<br />
+		还有我发现很多同学直接把javascript代码放在ajax返回的HTML页面里执行，这么做可能出现不可预测的错误，最好的方法是ajax只返回纯HTML，返回成功后在该ajax方法的回调函数（callback function）里执行javascript。
+		<pre class="prettyprint">
+//ajax请求之前执行KE.init
+KE.init({
+	id : 'textarea_id'
+});
+//ajax返回HTML后执行KE.create创建编辑器
+KE.create('textarea_id');
+</pre>
+	</div>
+
+	<div class="myblock" id="003">
+		<div class="header">3. 为什么会丢失某些HTML标签，是不是编辑器的BUG？</div>
+		这是因为3.4版本以前编辑器默认开启了过滤模式（filterMode:true）。当filterMode为true时，编辑器会根据htmlTags设定自动过滤HTML代码，主要是为了生成干净的代码。<br />
+		如果想保留所有HTML，请将filterMode设置成false。如果想保留特定HTML，请将filterMode设置成true后，配置htmlTags属性。<br />
+		从3.4版本开始默认关闭过滤模式，所以要过滤HTML，需要将filterMode设置成true。
+		<pre class="prettyprint">
+KE.show({
+	id : 'textarea_id',
+	filterMode : true // true:开启过滤模式, false:关闭过滤模式
+});
+</pre>
+	</div>
+
+	<div class="myblock" id="004">
+		<div class="header">4. 调用编辑器后显示不正常，怎么调整才能不和我的页面的CSS冲突？</div>
+		KindEditor所有CSS选择器都用ke开头的名字，所以名字是不会直接冲突的，一般页面显示不正常的原因是你的页面使用了全局标签的CSS定义。<br />
+		解决方式是为编辑器的div、table、td等标签重新设置一遍CSS。首先将skins/default.css文件放在你的CSS文件后面，default.css文件后面再定义一遍发生冲突的CSS。<br />
+		<pre class="prettyprint">
+&lt;style&gt;
+/* 你的全局CSS定义 */
+img {
+	border: 1px solid #555555;
+	padding: 10px;
+}
+&lt;/style&gt;
+
+&lt;!-- 编辑器的CSS文件 --&gt;
+&lt;link rel="stylesheet" type="text/css" href="./skins/default.css" /&gt;
+
+&lt;style&gt;
+/* 重新设置全局CSS定义 */
+img {
+	border: 0;
+	padding: 0;
+}
+&lt;/style&gt;
+
+&lt;!-- 通过style标签包含CSS时，需要将loadStyleMode属性设置成false --&gt;
+&lt;script&gt;
+KE.show({
+	id : 'textarea_id',
+	loadStyleMode : false
+});
+&lt;/scirpt&gt;
+</pre>
+	</div>
+
+	<div class="myblock" id="005">
+		<div class="header">5. 跨域调用后，点击插入图片或超级链接会报错。</div>
+		3.x版本的弹出框是用iframe加载HTML文件后显示的，跨域后2个document的域名不一样，无法进行跨页面js调用。正在开发中的4.0开始支持跨域调用，敬请期待。<br />
+	</div>
+
+	<div class="myblock" id="006">
+		<div class="header">6. 我取不到编辑器数据，直接取得textarea的value也没用。</div>
+		KindEditor的可视化操作在新创建的iframe上执行，代码模式下的textarea框也是新创建的，所以最后提交前需要将HTML数据设置到原来的textarea，KE.sync函数会完成这个动作。
+		KindEditor在默认情况下自动寻找textarea所属的form元素，找到form后onsubmit事件里添加KE.sync函数，所以用form方式提交数据，不需要手动执行KE.sync函数。
+		<pre class="prettyprint">
+//将编辑器的HTML数据设置到textarea，KE.sync是KE.util.setData的别名
+KE.sync(id);
+
+//KE.sync等价于以下代码
+KE.g[id].srcTextarea.value = KE.html(id);
+</pre>
+	</div>
+
+	<div class="myblock" id="007">
+		<div class="header">7. 上传图片为什么出现"服务器发生故障。"？</div>
+		出现这个提示的根本原因是没有正确返回JSON数据。具体原因有很多，imageUploadJson参数设置错误，upload_json.xxx程序出错都会出现这个提示。<br />
+		这时用Firefox的Firebug插件调试比较方便，上传图片后在Firebug的"网络" &gt; "HTML"里能看到"POST upload_json.xxx"，正常情况下HTTP状态为200，并返回正确的JSON格式，如图所示。<br />
+		<img src="images/firebug_upload_json.gif" width="576" height="179" alt="" />
+	</div>
+
+
+		<div class="clear"></div>
+
+	</div>
+	<div id="body_bottom"></div>
+	</div>
+
+<script type="text/javascript">
+prettyPrint();
+</script>
+
+<style>
+	#cnzz_stat_icon_253716 {
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		vertical-align: top;
+	}
+</style>
+<div id="footer">
+	<div id="copy">
+		<div>Copyright &copy; kindeditor.net &nbsp;
+			<a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备13006566号-2</a> &nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_253716'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D253716' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=qna by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>
+
+
+
+
+

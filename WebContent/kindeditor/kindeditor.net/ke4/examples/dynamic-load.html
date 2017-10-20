@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/ke4/examples/dynamic-load.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:06 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>Dynamic Load Examples</title>
+		<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<script charset="utf-8" src="../lib/jquery.html"></script>
+		<script>
+			$(function() {
+				$('input[name=load]').click(function() {
+					$.getScript('../kindeditor-min.js', function() {
+						KindEditor.basePath = '../index.html';
+						KindEditor.create('textarea[name="content"]');
+					});
+				});
+				$('input[name=remove]').click(function() {
+					KindEditor.remove('textarea[name="content"]');
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-7116729301372758";
+		/* 更多演示（728x90） */
+		google_ad_slot = "5052271949";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+		</script>
+		<h3>异步加载</h3>
+		<form>
+			<textarea name="content" style="width:800px;height:200px;"></textarea>
+			<p>
+				<input type="button" name="load" value="加载JS并创建编辑器" />
+				<input type="button" name="remove" value="删除编辑器" />
+			</p>
+		</form>
+	</body>
+
+<!-- Mirrored from kindeditor.net/ke4/examples/dynamic-load.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:07 GMT -->
+</html>

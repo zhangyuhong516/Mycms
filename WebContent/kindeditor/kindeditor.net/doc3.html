@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/doc3.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>文档 - KindEditor - 在线HTML编辑器</title>
+		<meta name="description" content="编辑器调用方法、编辑器初始化参数、添加自定义插件、API文档、常见问题" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="css/mainfd47.css?t=20140215.css" rel="stylesheet" />
+		<link href="prettify/prettifye51e.css?t=20110528.css" rel="stylesheet" />
+		<link href="ke4/themes/default/default79ed.css?t=20160331.css" rel="stylesheet" />
+		<script src="ke4/kindeditor-all-min53a2.js?t=20160331.js"></script>
+		<script src="prettify/prettify8b79.js?t=20110528.js"></script>
+		<script>
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-739852-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="header_top">
+		<a href="demo.html" id="logo" title="返回首页"><img src="images/logo.png" width="200" height="34" alt="KindEditor" /></a>
+		<ul id="nav">
+			<li><a href="about.html">关于</a></li>
+			<li><a href="demo.html">演示</a></li>
+			<li><a href="down.html">下载</a></li>
+			<li class="active"><a href="doc.html">文档</a></li>
+			<li><a href="case.html">成功案例</a></li>
+			<li><a href="http://kindeditor.org/">English</a></li>
+		</ul>
+	</div>
+
+
+
+<div id="header_bottom">
+	<div id="slider_container">
+		<h1 class="yahei h_fix">文档 <span>Documentation</span></h1>
+	</div>
+</div>
+</div>
+
+<div id="body">
+	<div id="body_top"></div>
+	<div id="body_middle">
+		<ul id="breadcrumb">
+			<li class="t">当前位置: </li>
+			<li><a href="demo.html">首页</a> &nbsp;&gt;</li>
+			<li>文档</li>
+		</ul>
+
+		<div class="doc-navi">
+			<h1 class="yahei h_fix">文档 <span>Documentation</span></h1> 
+			<ul class="list">
+				<li><a href="doc3.html">编辑器调用方法</a></li>
+				<li><a href="doc39076.html?cmd=config">编辑器初始化参数</a></li>
+				<li><a href="doc3ae65.html?cmd=plugin">添加自定义插件</a></li>
+				<li><a href="doc334d3.html?cmd=api">API文档</a></li>
+				<li><a href="doc3a425.html?cmd=qna">常见问题</a></li>
+			</ul>
+		</div>
+
+
+
+<style>
+.myblock {
+	padding-right: 100px;
+}
+.myblock ol li {
+	margin-bottom: 20px;
+}
+</style>
+	<div class="myblock">
+		<div class="header">编辑器调用方法</div>
+		<ol>
+			<li>
+				下载 KindEditor 最新版本。<a href="down.html" target="_blank">打开下载页面</a>
+			</li>
+			<li>
+				解压zip文件，将所有文件上传到您的网站程序目录下。例如：http://您的域名/editor/
+			</li>
+			<li>
+				在需要显示编辑器的位置添加TEXTAREA输入框。<br />
+				id在当前页面必须是唯一的值，还有，在有些浏览器上不设宽度和高度可能显示有问题，所以最好设一下宽度和高度。宽度和高度可用inline样式设置，也可用编辑器初始化参数设置。<br />
+				在TEXTAREA里设置HTML内容即可实现编辑，在这里需要注意的是，如果从服务器端程序(ASP、PHP、ASP.NET等)直接显示内容，则必须转换HTML特殊字符(&gt;,&lt;,&amp;,&quot;)。
+				具体请参考各语言目录下面的demo.xxx程序，目前支持ASP、ASP.NET、PHP、JSP。<br />
+				<pre class="prettyprint">
+&lt;textarea id=&quot;editor_id&quot; name=&quot;content&quot; style=&quot;width:700px;height:300px;&quot;&gt;
+&amp;lt;strong&amp;gt;HTML内容&amp;lt;/strong&amp;gt;
+&lt;/textarea&gt;</pre>
+			</li>
+			<li>
+				在该HTML页面添加以下脚本。
+				<pre class="prettyprint">
+&lt;script charset=&quot;utf-8&quot; src=&quot;/editor/kindeditor.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	KE.show({
+		id : 'editor_id'
+	});
+&lt;/script&gt;</pre>
+				注：KE.show的原理是先执行KE.init设置一些变量，等DOM全部创建以后才开始执行KE.create创建编辑器。
+				如果浏览器不触发DOMContentLoaded事件（例如：jQuery的$.ready，点击某个按钮，通过innerHTML插入HTML等），则不能使用KE.show，需要直接调用KE.init和KE.create。<br />
+				<pre class="prettyprint">
+KE.init({
+	id : 'editor_id'
+});
+$.ready(function() {
+	KE.create('editor_id');
+});</pre>
+				调用KE.show和KE.init时，除id之外还可以设置其它的参数，具体属性请参考<a href="doc39076.html?cmd=config">编辑器初始化参数</a>。
+			</li>
+			<li>取得编辑器的HTML内容。<br />
+				KindEditor的可视化操作在新创建的iframe上执行，代码模式下的textarea框也是新创建的，所以最后提交前需要将HTML数据同步到原来的textarea，KE.sync函数会完成这个动作。<br />
+				KindEditor在默认情况下自动寻找textarea所属的form元素，找到form后onsubmit事件里添加KE.sync函数，所以用form方式提交数据，不需要手动执行KE.sync函数。<br />
+				<pre class="prettyprint">
+//取得HTML内容
+html = KE.html('editor_id');
+
+//同步数据后可以直接取得textarea的value
+KE.sync('editor_id');
+html = document.getElementById('editor_id').value;
+html = $('#editor_id').val(); //jQuery
+
+//设置HTML内容
+KE.html('editor_id', 'HTML内容');
+</pre>
+			</li>
+		</ol>
+	</div>
+
+	<div class="clear"></div>
+
+</div>
+<div id="body_bottom"></div>
+</div>
+
+<script type="text/javascript">
+prettyPrint();
+</script>
+
+<style>
+	#cnzz_stat_icon_253716 {
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		vertical-align: top;
+	}
+</style>
+<div id="footer">
+	<div id="copy">
+		<div>Copyright &copy; kindeditor.net &nbsp;
+			<a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备13006566号-2</a> &nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_253716'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D253716' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<!-- Mirrored from kindeditor.net/doc3.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>
+
+
+
+
+

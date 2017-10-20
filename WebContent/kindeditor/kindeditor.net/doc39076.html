@@ -1,0 +1,391 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=config by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>文档 - KindEditor - 在线HTML编辑器</title>
+		<meta name="description" content="编辑器调用方法、编辑器初始化参数、添加自定义插件、API文档、常见问题" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="css/mainfd47.css?t=20140215.css" rel="stylesheet" />
+		<link href="prettify/prettifye51e.css?t=20110528.css" rel="stylesheet" />
+		<link href="ke4/themes/default/default79ed.css?t=20160331.css" rel="stylesheet" />
+		<script src="ke4/kindeditor-all-min53a2.js?t=20160331.js"></script>
+		<script src="prettify/prettify8b79.js?t=20110528.js"></script>
+		<script>
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-739852-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="header_top">
+		<a href="demo.html" id="logo" title="返回首页"><img src="images/logo.png" width="200" height="34" alt="KindEditor" /></a>
+		<ul id="nav">
+			<li><a href="about.html">关于</a></li>
+			<li><a href="demo.html">演示</a></li>
+			<li><a href="down.html">下载</a></li>
+			<li class="active"><a href="doc.html">文档</a></li>
+			<li><a href="case.html">成功案例</a></li>
+			<li><a href="http://kindeditor.org/">English</a></li>
+		</ul>
+	</div>
+
+
+
+
+<div id="header_bottom">
+	<div id="slider_container">
+		<h1 class="yahei h_fix">文档 <span>Documentation</span></h1>
+	</div>
+</div>
+</div>
+
+<div id="body">
+	<div id="body_top"></div>
+	<div id="body_middle">
+		<ul id="breadcrumb">
+			<li class="t">当前位置: </li>
+			<li><a href="demo.html">首页</a> &nbsp;&gt;</li>
+			<li>文档</li>
+		</ul>
+
+		<div class="doc-navi">
+			<h1 class="yahei h_fix">文档 <span>Documentation</span></h1> 
+			<ul class="list">
+				<li><a href="doc3.html">编辑器调用方法</a></li>
+				<li><a href="doc39076.html?cmd=config">编辑器初始化参数</a></li>
+				<li><a href="doc3ae65.html?cmd=plugin">添加自定义插件</a></li>
+				<li><a href="doc334d3.html?cmd=api">API文档</a></li>
+				<li><a href="doc3a425.html?cmd=qna">常见问题</a></li>
+			</ul>
+		</div>
+
+
+
+	<div class="myblock">
+		<div class="header">编辑器初始化参数</div>
+		调用<strong>KE.show</strong>或<strong>KE.init</strong>时可以设置以下参数。
+		<ol>
+			<li>
+				<strong>id</strong><br />
+				TEXTAREA输入框的ID，必须设置。<br />
+				数据类型：String<br />
+			</li>
+			<li>
+				<strong>items</strong><br />
+				配置编辑器的工具栏，其中"-"表示换行，"|"表示分隔符。<br />
+				数据类型：Array<br />
+				默认值：
+				<pre class="prettyprint">
+['source', '|', 'fullscreen', 'undo', 'redo', 'print', 'cut', 'copy', 'paste',
+'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+'superscript', '|', 'selectall', '-',
+'title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold',
+'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image',
+'flash', 'media', 'advtable', 'hr', 'emoticons', 'link', 'unlink', '|', 'about']
+</pre>
+			</li>
+			<li>
+				<strong>width</strong><br />
+				编辑器的宽度，可以设置px或%，比TEXTAREA输入框样式表宽度优先度高。<br />
+				数据类型：String<br />
+				默认值：TEXTAREA输入框的宽度<br />
+				注: 3.2版本开始支持。<br />
+			</li>
+			<li>
+				<strong>height</strong><br />
+				编辑器的高度，只能设置px，比TEXTAREA输入框样式表高度优先度高。<br />
+				数据类型：String<br />
+				默认值：TEXTAREA输入框的高度<br />
+				注: 3.2版本开始支持。<br />
+			</li>
+			<li>
+				<strong>minWidth</strong><br />
+				数据类型：Int<br />
+				指定编辑器最小宽度，单位为px。<br />
+				默认值：200<br />
+			</li>
+			<li>
+				<strong>minHeight</strong><br />
+				数据类型：Int<br />
+				指定编辑器最小高度，单位为px。<br />
+				默认值：100<br />
+			</li>
+			<li>
+				<strong>filterMode</strong><br />
+				数据类型：Boolean<br />
+				true时过滤HTML代码，false时允许输入任何代码。<br />
+				默认值：false<br />
+				注: 3.4以前版本的filterMode默认值为true。<br />
+			</li>
+			<li>
+				<strong>htmlTags</strong><br />
+				指定要保留的HTML标记和属性。哈希数组的key为HTML标签名，value为HTML属性数组，"."开始的属性表示style属性。<br />
+				数据类型：Object<br />
+				默认值：
+				<pre class="prettyprint">
+{
+	font : ['color', 'size', 'face', '.background-color'],
+	span : ['style'],
+	div : ['class', 'align', 'style'],
+	table: ['class', 'border', 'cellspacing', 'cellpadding', 'width', 'height', 'align', 'style'],
+	'td,th': ['class', 'align', 'valign', 'width', 'height', 'colspan', 'rowspan', 'bgcolor', 'style'],
+	a : ['class', 'href', 'target', 'name', 'style'],
+	embed : ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality',
+	'style', 'align', 'allowscriptaccess', '/'],
+	img : ['src', 'width', 'height', 'border', 'alt', 'title', 'align', 'style', '/'],
+	hr : ['class', '/'],
+	br : ['/'],
+	'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6' : ['align', 'style'],
+	'tbody,tr,strong,b,sub,sup,em,i,u,strike' : []
+}
+</pre>
+				<span style="color:red;">注：filterMode为true时有效。3.4版本开始属性可设置style，保留所有inline样式。</span><br />
+			</li>
+			<li>
+				<strong>resizeMode</strong><br />
+				2或1或0，2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动。<br />
+				数据类型：Int<br />
+				默认值：2<br />
+			</li>
+			<li>
+				<strong>skinType</strong><br />
+				风格类型，default<br />
+				数据类型：String<br />
+				默认值：default<br />
+			</li>
+			<li>
+				<strong>wyswygMode</strong><br />
+				可视化模式或代码模式<br />
+				数据类型：Boolean<br />
+				默认值：true<br />
+			</li>
+			<li>
+				<strong>cssPath</strong><br />
+				指定编辑器iframe document的CSS，用于设置可视化区域的样式。<br />
+				数据类型：String或Array<br />
+				默认值：空<br />
+				注：3.4.1版本开始可指定多个CSS文件。例如：cssPath : ['a.css', 'b.css']
+			</li>
+			<li>
+				<strong>skinsPath</strong><br />
+				指定编辑器的skins目录，skins目录存放风格的css文件和gif图片。<br />
+				数据类型：String<br />
+				默认值：KE.scriptPath + 'skins/'<br />
+			</li>
+			<li>
+				<strong>pluginsPath</strong><br />
+				指定编辑器的plugins目录。<br />
+				数据类型：String<br />
+				默认值：KE.scriptPath + 'plugins/'<br />
+			</li>
+			<li>
+				<strong>minChangeSize</strong><br />
+				undo/redo文字输入最小变化长度，当输入的文字变化小于这个长度时不会添加到undo堆栈里。<br />
+				数据类型：Int<br />
+				默认值：5<br />
+			</li>
+			<li>
+				<strong>loadStyleMode</strong><br />
+				true时自动加载编辑器的CSS。<br />
+				数据类型：Boolean<br />
+				默认值：true<br />
+				注: 3.4版本开始支持。<br />
+			</li>
+			<li>
+				<strong>urlType</strong><br />
+				改变站内本地URL，可设置空、relative、absolute、domain。空为不修改URL，relative为相对路径，absolute为绝对路径，domain为带域名的绝对路径。<br />
+				数据类型：String<br />
+				默认值：空<br />
+				注: 3.4版本开始支持，3.4.1版本开始默认值为空。<br />
+			</li>
+			<li>
+				<strong>newlineTag</strong><br />
+				设置回车换行标签，可设置p、br。<br />
+				数据类型：String<br />
+				默认值：br<br />
+				注: 3.4版本开始支持。<br />
+			</li>
+			<li>
+				<strong>afterCreate</strong><br />
+				设置编辑器创建后执行的回调函数。<br />
+				数据类型：Function<br />
+				默认值：无<br />
+			</li>
+			<li>
+				<strong>afterDialogCreate</strong><br />
+				设置弹出浮动框创建后执行的回调函数。<br />
+				数据类型：Function<br />
+				默认值：无<br />
+				注: 3.4.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>allowUpload</strong><br />
+				true或false，true时显示上传图片标签。<br />
+				数据类型：Boolean<br />
+				默认值：true<br />
+				注: 3.4版本开始支持。<br />
+			</li>
+			<li>
+				<strong>allowFileManager</strong><br />
+				true或false，true时显示浏览服务器图片功能。<br />
+				数据类型：Boolean<br />
+				默认值：false<br />
+				注: 3.4版本开始支持。<br />
+			</li>
+			<li>
+				<strong>referMethod</strong><br />
+				设置referMethod后上传图片的POST参数里有referMethod。<br />
+				数据类型：String<br />
+				默认值：空<br />
+				注: 3.4版本开始支持。<br />
+			</li>
+			<li>
+				<strong>dialogAlignType</strong><br />
+				设置弹出框(dialog)的对齐类型，可设置page和空，指定page时按当前页面居中，指定空时按编辑器居中。<br />
+				数据类型：String<br />
+				默认值：page<br />
+				注: 3.4.1版本开始支持。<br />
+			</li>
+			<li>
+				<strong>imageUploadJson</strong><br />
+				指定上传图片的服务器端程序。<br />
+				数据类型：String<br />
+				默认值：../../php/upload_json.php<br />
+				注: 3.4.1版本开始支持。<br />
+			</li>
+			<li>
+				<strong>fileManagerJson</strong><br />
+				指定浏览远程图片的服务器端程序。<br />
+				数据类型：String<br />
+				默认值：../../php/file_manager_json.php<br />
+				注: 3.4.1版本开始支持。<br />
+			</li>
+			<li>
+				<strong>shadowMode</strong><br />
+				true或false，true时弹出层显示阴影。<br />
+				数据类型：Boolean<br />
+				默认值：true<br />
+				注: 3.5版本开始支持。<br />
+			</li>
+			<li>
+				<strong>allowPreviewEmoticons</strong><br />
+				true或false，true时鼠标放在表情上可以预览表情。<br />
+				数据类型：Boolean<br />
+				默认值：true<br />
+				注: 3.5版本开始支持。<br />
+			</li>
+			<li>
+				<strong>useContextmenu</strong><br />
+				true或false，true时使用自定义右键菜单，false时屏蔽自定义右键菜单。<br />
+				数据类型：Boolean<br />
+				默认值：true<br />
+				注: 3.5.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>syncType</strong><br />
+				同步数据的方式，可设置"","auto","form"，值为"auto"时每次修改时都会同步，"form"时提交form时同步，空时不会自动同步。<br />
+				数据类型：String<br />
+				默认值："form"<br />
+				注: 3.5.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>tabIndex</strong><br />
+				编辑器的tabindex。<br />
+				数据类型：Int<br />
+				默认值：TEXTAREA输入框的tabindex<br />
+				注: 3.5.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>afterChange</strong><br />
+				编辑器内容发生变化后执行的回调函数。<br />
+				数据类型：Function<br />
+				默认值：无<br />
+				注: 3.5.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>afterTab</strong><br />
+				按下TAB键后执行的的回调函数。<br />
+				数据类型：Function<br />
+				默认值：
+				<pre class="prettyprint">
+function(id) {
+	KE.util.setSelection(id);
+	KE.util.insertHtml(id, '&nbsp;&nbsp;&nbsp;&nbsp;');
+}
+</pre>
+				注: 3.5.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>afterFocus</strong><br />
+				编辑器聚焦(focus)时执行的回调函数。<br />
+				数据类型：Function<br />
+				默认值：无<br />
+				注: 3.5.3版本开始支持。<br />
+			</li>
+			<li>
+				<strong>afterBlur</strong><br />
+				编辑器失去焦点(blur)时执行的回调函数。<br />
+				数据类型：Function<br />
+				默认值：无<br />
+				注: 3.5.3版本开始支持。<br />
+			</li>
+		</ol>
+		参数设置例子：
+		<pre class="prettyprint">
+KE.show({
+	id : "content_1",
+	width : "70%", //编辑器的宽度为70%
+	height : "200px", //编辑器的高度为100px
+	filterMode : false, //不会过滤HTML代码
+	resizeMode : 1 //编辑器只能调整高度
+});
+</pre>
+
+	</div>
+
+		<div class="clear"></div>
+
+	</div>
+	<div id="body_bottom"></div>
+	</div>
+
+<script type="text/javascript">
+prettyPrint();
+</script>
+
+<style>
+	#cnzz_stat_icon_253716 {
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		vertical-align: top;
+	}
+</style>
+<div id="footer">
+	<div id="copy">
+		<div>Copyright &copy; kindeditor.net &nbsp;
+			<a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备13006566号-2</a> &nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_253716'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D253716' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=config by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>
+
+
+
+
+

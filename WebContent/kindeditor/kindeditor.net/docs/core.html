@@ -1,0 +1,634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/core.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="事件(Event) API" href="event.html" />
+    <link rel="prev" title="常见问题" href="qna.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="event.html" title="事件(Event) API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qna.html" title="常见问题"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="base-api">
+<h1><a class="toc-backref" href="#id1">基础(Base) API</a><a class="headerlink" href="#base-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#base-api" id="id1">基础(Base) API</a><ul>
+<li><a class="reference internal" href="#k-version" id="id2">K.VERSION</a></li>
+<li><a class="reference internal" href="#k-ie" id="id3">K.IE</a></li>
+<li><a class="reference internal" href="#k-gecko" id="id4">K.GECKO</a></li>
+<li><a class="reference internal" href="#k-webkit" id="id5">K.WEBKIT</a></li>
+<li><a class="reference internal" href="#k-opera" id="id6">K.OPERA</a></li>
+<li><a class="reference internal" href="#k-mobile" id="id7">K.MOBILE</a></li>
+<li><a class="reference internal" href="#k-quirks" id="id8">K.QUIRKS</a></li>
+<li><a class="reference internal" href="#k-v" id="id9">K.V</a></li>
+<li><a class="reference internal" href="#k-time" id="id10">K.TIME</a></li>
+<li><a class="reference internal" href="#k-isarray-val" id="id11">K.isArray(val)</a></li>
+<li><a class="reference internal" href="#k-isfunction-val" id="id12">K.isFunction(val)</a></li>
+<li><a class="reference internal" href="#k-inarray-val-arr" id="id13">K.inArray(val , arr)</a></li>
+<li><a class="reference internal" href="#k-each-obj-fn" id="id14">K.each(obj , fn)</a></li>
+<li><a class="reference internal" href="#k-trim-str" id="id15">K.trim(str)</a></li>
+<li><a class="reference internal" href="#k-instring-val-str-delimiter" id="id16">K.inString(val , str [, delimiter])</a></li>
+<li><a class="reference internal" href="#k-addunit-val-unit" id="id17">K.addUnit(val [, unit])</a></li>
+<li><a class="reference internal" href="#k-removeunit-val" id="id18">K.removeUnit(val)</a></li>
+<li><a class="reference internal" href="#k-escape-val" id="id19">K.escape(val)</a></li>
+<li><a class="reference internal" href="#k-unescape-val" id="id20">K.unescape(val)</a></li>
+<li><a class="reference internal" href="#k-tocamel-val" id="id21">K.toCamel(val)</a></li>
+<li><a class="reference internal" href="#k-tohex-val" id="id22">K.toHex(val)</a></li>
+<li><a class="reference internal" href="#k-tomap-val-delimiter" id="id23">K.toMap(val [, delimiter])</a></li>
+<li><a class="reference internal" href="#k-toarray-obj-offset" id="id24">K.toArray(obj [, offset])</a></li>
+<li><a class="reference internal" href="#k-undef-val-defaultval" id="id25">K.undef(val , defaultVal)</a></li>
+<li><a class="reference internal" href="#k-invalidurl-val" id="id26">K.invalidUrl(val)</a></li>
+<li><a class="reference internal" href="#k-addparam-url-param" id="id27">K.addParam(url, param)</a></li>
+<li><a class="reference internal" href="#k-extend-fn-proto" id="id28">K.extend(fn , proto)</a></li>
+<li><a class="reference internal" href="#k-extend-child-parent-proto" id="id29">K.extend(child , parent , proto)</a></li>
+<li><a class="reference internal" href="#k-json-text" id="id30">K.json(text)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-version">
+<span id="version"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.VERSION</a><a class="headerlink" href="#k-version" title="Permalink to this headline">¶</a></h2>
+<p>当前KindEditor的版本号。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">当前浏览器的版本号为 <a class="reference internal" href="#v"><span class="std std-ref">K.V</span></a> 。</p>
+</div>
+</div>
+<div class="section" id="k-ie">
+<span id="ie"></span><span id="index-1"></span><h2><a class="toc-backref" href="#id3">K.IE</a><a class="headerlink" href="#k-ie" title="Permalink to this headline">¶</a></h2>
+<p>当前浏览器内核为IE时true，否则false。</p>
+</div>
+<div class="section" id="k-gecko">
+<span id="gecko"></span><span id="index-2"></span><h2><a class="toc-backref" href="#id4">K.GECKO</a><a class="headerlink" href="#k-gecko" title="Permalink to this headline">¶</a></h2>
+<p>当前浏览器内核为Gecko（Firefox）时true，否则false。</p>
+</div>
+<div class="section" id="k-webkit">
+<span id="webkit"></span><span id="index-3"></span><h2><a class="toc-backref" href="#id5">K.WEBKIT</a><a class="headerlink" href="#k-webkit" title="Permalink to this headline">¶</a></h2>
+<p>当前浏览器内核为Webkit（Safari、Chrome）时true，否则false。</p>
+</div>
+<div class="section" id="k-opera">
+<span id="opera"></span><span id="index-4"></span><h2><a class="toc-backref" href="#id6">K.OPERA</a><a class="headerlink" href="#k-opera" title="Permalink to this headline">¶</a></h2>
+<p>当前浏览器内核为Opera时true，否则false。</p>
+</div>
+<div class="section" id="k-mobile">
+<span id="mobile"></span><span id="index-5"></span><h2><a class="toc-backref" href="#id7">K.MOBILE</a><a class="headerlink" href="#k-mobile" title="Permalink to this headline">¶</a></h2>
+<p>当前浏览器为移动设备上的浏览器时true，否则false。</p>
+</div>
+<div class="section" id="k-quirks">
+<span id="quirks"></span><span id="index-6"></span><h2><a class="toc-backref" href="#id8">K.QUIRKS</a><a class="headerlink" href="#k-quirks" title="Permalink to this headline">¶</a></h2>
+<p>true时怪异模式，false时标准模式。</p>
+</div>
+<div class="section" id="k-v">
+<span id="v"></span><span id="index-7"></span><h2><a class="toc-backref" href="#id9">K.V</a><a class="headerlink" href="#k-v" title="Permalink to this headline">¶</a></h2>
+<p>当前浏览器的版本号。</p>
+</div>
+<div class="section" id="k-time">
+<span id="time"></span><span id="index-8"></span><h2><a class="toc-backref" href="#id10">K.TIME</a><a class="headerlink" href="#k-time" title="Permalink to this headline">¶</a></h2>
+<p>加载JS时的时间。</p>
+</div>
+<div class="section" id="k-isarray-val">
+<span id="isarray"></span><span id="index-9"></span><h2><a class="toc-backref" href="#id11">K.isArray(val)</a><a class="headerlink" href="#k-isarray-val" title="Permalink to this headline">¶</a></h2>
+<p>判断一个变量是否数组。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed val: 目标变量</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: 当变量为数组时返回true，否则返回false。</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">bool</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">isArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span> <span class="c1">//返回true</span>
+<span class="nx">bool</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">isArray</span><span class="p">({</span><span class="nx">one</span> <span class="o">:</span> <span class="mi">1</span><span class="p">});</span> <span class="c1">//返回false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-isfunction-val">
+<span id="isfunction"></span><span id="index-10"></span><h2><a class="toc-backref" href="#id12">K.isFunction(val)</a><a class="headerlink" href="#k-isfunction-val" title="Permalink to this headline">¶</a></h2>
+<p>判断一个变量是不是函数。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed val: 目标变量</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: 当变量为函数时返回true，否则返回false。</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">bool</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">});</span> <span class="c1">//返回true</span>
+<span class="nx">bool</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">({});</span> <span class="c1">//返回false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-inarray-val-arr">
+<span id="inarray"></span><span id="index-11"></span><h2><a class="toc-backref" href="#id13">K.inArray(val , arr)</a><a class="headerlink" href="#k-inarray-val-arr" title="Permalink to this headline">¶</a></h2>
+<p>查找一个变量在一个数组中第一次出现的索引位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed val: 任意变量</li>
+<li>array arr: 数组</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: 返回第一次出现的索引位置，如果没找到，则返回-1。</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">index</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span> <span class="c1">//返回1</span>
+<span class="nx">index</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span> <span class="c1">//返回0</span>
+<span class="nx">index</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span> <span class="c1">//返回-1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-each-obj-fn">
+<span id="each"></span><span id="index-12"></span><h2><a class="toc-backref" href="#id14">K.each(obj , fn)</a><a class="headerlink" href="#k-each-obj-fn" title="Permalink to this headline">¶</a></h2>
+<p>遍历一个对象或数组。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object|array obj: 目标对象或数组</li>
+<li>function fn: 回调函数，回调函数的第一个参数为key，第二个参数为value。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: 无</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">//遍历数组</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">//遍历对象</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">each</span><span class="p">({</span><span class="nx">one</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">two</span> <span class="o">:</span> <span class="mi">2</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">val</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-trim-str">
+<span id="trim"></span><span id="index-13"></span><h2><a class="toc-backref" href="#id15">K.trim(str)</a><a class="headerlink" href="#k-trim-str" title="Permalink to this headline">¶</a></h2>
+<p>清除字符串两边的空白。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string str: 目标字符串</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="s1">&#39; abc &#39;</span><span class="p">);</span> <span class="c1">//返回&quot;abc&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-instring-val-str-delimiter">
+<span id="instring"></span><span id="index-14"></span><h2><a class="toc-backref" href="#id16">K.inString(val , str [, delimiter])</a><a class="headerlink" href="#k-instring-val-str-delimiter" title="Permalink to this headline">¶</a></h2>
+<p>判断一个字符串是否包含在目标字符串里。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 要判断的字符串</li>
+<li>string str: 用delimiter分隔的目标字符串</li>
+<li>string delimiter: 分隔符，默认值为逗号(,)。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: boolean</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">bool</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">inString</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abc,aaa,bbb,ccc&#39;</span><span class="p">);</span> <span class="c1">//返回true</span>
+<span class="nx">bool</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">inString</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;abc aaa bbb ccc&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">);</span> <span class="c1">//返回true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-addunit-val-unit">
+<span id="addunit"></span><span id="index-15"></span><h2><a class="toc-backref" href="#id17">K.addUnit(val [, unit])</a><a class="headerlink" href="#k-addunit-val-unit" title="Permalink to this headline">¶</a></h2>
+<p>一个数字后面添加指定字符串，如果val不是数字则返回原值。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 任意数字或字符串</li>
+<li>string str: 单位，默认值为px</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addUnit</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="c1">//返回&quot;100px&quot;</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addUnit</span><span class="p">(</span><span class="s1">&#39;100px&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;100px&quot;</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addUnit</span><span class="p">(</span><span class="s1">&#39;80%&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;80%&quot;</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addUnit</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;80%&quot;</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addUnit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;&quot;</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addUnit</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">//返回null</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-removeunit-val">
+<span id="removeunit"></span><span id="index-16"></span><h2><a class="toc-backref" href="#id18">K.removeUnit(val)</a><a class="headerlink" href="#k-removeunit-val" title="Permalink to this headline">¶</a></h2>
+<p>从一个字符串中提取数字，如果该字符串中没有数字则返回0。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>int|string val: 任意字符串</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: int</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">removeUnit</span><span class="p">(</span><span class="s1">&#39;100px&#39;</span><span class="p">);</span> <span class="c1">//返回100</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">removeUnit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span> <span class="c1">//返回0</span>
+<span class="nx">width</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">removeUnit</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">//返回0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-escape-val">
+<span id="escape"></span><span id="index-17"></span><h2><a class="toc-backref" href="#id19">K.escape(val)</a><a class="headerlink" href="#k-escape-val" title="Permalink to this headline">¶</a></h2>
+<p>将特殊字符转换成HTML entities。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 任意字符串</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;&lt;div id=&quot;abc&quot;&gt;&amp;&lt;/div&gt;&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;&amp;lt;div id=&amp;quot;abc&amp;quot;&amp;gt;&amp;amp;&amp;lt;/div&amp;gt;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-unescape-val">
+<span id="unescape"></span><span id="index-18"></span><h2><a class="toc-backref" href="#id20">K.unescape(val)</a><a class="headerlink" href="#k-unescape-val" title="Permalink to this headline">¶</a></h2>
+<p>将特殊HTML entities转换成字符。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 任意字符串</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">unescape</span><span class="p">(</span><span class="s1">&#39;&amp;lt;div id=&amp;quot;abc&amp;quot;&amp;gt;&amp;amp;&amp;lt;/div&amp;gt;&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;&lt;div id=&quot;abc&quot;&gt;&amp;&lt;/div&gt;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-tocamel-val">
+<span id="tocamel"></span><span id="index-19"></span><h2><a class="toc-backref" href="#id21">K.toCamel(val)</a><a class="headerlink" href="#k-tocamel-val" title="Permalink to this headline">¶</a></h2>
+<p>将to-camel格式的字符串转换成toCamel格式。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val:</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">str</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">toCamel</span><span class="p">(</span><span class="s1">&#39;font-weight&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;fontWeight&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-tohex-val">
+<span id="tohex"></span><span id="index-20"></span><h2><a class="toc-backref" href="#id22">K.toHex(val)</a><a class="headerlink" href="#k-tohex-val" title="Permalink to this headline">¶</a></h2>
+<p>将任意字符串中的RGB颜色转换成16进制颜色。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 包含RGB颜色的字符串</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string 16进制颜色</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">hex</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">toHex</span><span class="p">(</span><span class="s1">&#39;rgb(0, 0, 0)&#39;</span><span class="p">);</span> <span class="c1">//返回&quot;#000000&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-tomap-val-delimiter">
+<span id="tomap"></span><span id="index-21"></span><h2><a class="toc-backref" href="#id23">K.toMap(val [, delimiter])</a><a class="headerlink" href="#k-tomap-val-delimiter" title="Permalink to this headline">¶</a></h2>
+<p>将一个字符串或数字转换成key-value对象。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string|array val: 字符串或者数组，字符串时用delimiter分隔的字符串</li>
+<li>string delimiter: 分隔符，当val为字符串时有效，默认值为逗号(,)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: object</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">map</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">toMap</span><span class="p">(</span><span class="s1">&#39;abc,aaa,bbb&#39;</span><span class="p">);</span> <span class="c1">//返回{abc : true, aaa : true, bbb : true}</span>
+<span class="nx">map</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">toMap</span><span class="p">(</span><span class="s1">&#39;abc-aaa-bbb&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">);</span> <span class="c1">//返回{abc : true, aaa : true, bbb : true}</span>
+<span class="nx">map</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">toMap</span><span class="p">([</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;bbb&#39;</span><span class="p">]);</span> <span class="c1">//返回{abc : true, aaa : true, bbb : true}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-toarray-obj-offset">
+<span id="toarray"></span><span id="index-22"></span><h2><a class="toc-backref" href="#id24">K.toArray(obj [, offset])</a><a class="headerlink" href="#k-toarray-obj-offset" title="Permalink to this headline">¶</a></h2>
+<p>将一个数组风格对象转换成真正的数组。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object obj: 任意对象</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: array</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">toArray</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-undef-val-defaultval">
+<span id="undef"></span><span id="index-23"></span><h2><a class="toc-backref" href="#id25">K.undef(val , defaultVal)</a><a class="headerlink" href="#k-undef-val-defaultval" title="Permalink to this headline">¶</a></h2>
+<p>当val为undefined时返回defaultVal，否则返回val。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed val: 任意变量</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: val或defaultVal</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">val</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">undef</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//返回1</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">val</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">undef</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">aaa</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//返回0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-invalidurl-val">
+<span id="invalidurl"></span><span id="index-24"></span><h2><a class="toc-backref" href="#id26">K.invalidUrl(val)</a><a class="headerlink" href="#k-invalidurl-val" title="Permalink to this headline">¶</a></h2>
+<p>判断URL或路径是否合法。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: URL或路径</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: boolean</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">val</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">invalidUrl</span><span class="p">(</span><span class="s1">&#39;abc&lt;&quot;&gt;.html&#39;</span><span class="p">);</span> <span class="c1">//返回true</span>
+<span class="nx">val</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">invalidUrl</span><span class="p">(</span><span class="s1">&#39;abc.html&#39;</span><span class="p">);</span> <span class="c1">//返回false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-addparam-url-param">
+<span id="addparam"></span><span id="index-25"></span><h2><a class="toc-backref" href="#id27">K.addParam(url, param)</a><a class="headerlink" href="#k-addparam-url-param" title="Permalink to this headline">¶</a></h2>
+<p>URL添加GET参数，拼接时自动判断连接字符(&amp;或?)。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string url: URL</li>
+<li>string param: GET参数</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: boolean</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">url</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addParam</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/test.php&#39;</span><span class="p">,</span> <span class="s1">&#39;abc=123&#39;</span><span class="p">);</span>
+<span class="nx">url</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">addParam</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/test.php?cde=456&#39;</span><span class="p">,</span> <span class="s1">&#39;abc=123&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-extend-fn-proto">
+<span id="extend"></span><span id="index-26"></span><h2><a class="toc-backref" href="#id28">K.extend(fn , proto)</a><a class="headerlink" href="#k-extend-fn-proto" title="Permalink to this headline">¶</a></h2>
+<p>创建class。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>function fn: Function</li>
+<li>object proto: fn的prototype</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Animal</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Animal</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;init animal.&#39;</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">run</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;animal is running.&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Animal</span><span class="p">();</span>
+<span class="nx">animal</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-extend-child-parent-proto">
+<h2><a class="toc-backref" href="#id29">K.extend(child , parent , proto)</a><a class="headerlink" href="#k-extend-child-parent-proto" title="Permalink to this headline">¶</a></h2>
+<p>继承class。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>function child: 子类</li>
+<li>function parent: 父类</li>
+<li>object proto: 子类的prototype</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// create Animal class</span>
+<span class="kd">function</span> <span class="nx">Animal</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Animal</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">run</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; is running.&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+<span class="c1">// create Cat class</span>
+<span class="kd">function</span> <span class="nx">Cat</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Cat</span><span class="p">,</span> <span class="nx">Animal</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Cat</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">myCat</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">(</span><span class="s1">&#39;Tony&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myCat</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// print &#39;Tony&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myCat</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// print 5</span>
+<span class="nx">myCat</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span> <span class="c1">// print &#39;Tony is running.&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-json-text">
+<span id="json"></span><span id="index-27"></span><h2><a class="toc-backref" href="#id30">K.json(text)</a><a class="headerlink" href="#k-json-text" title="Permalink to this headline">¶</a></h2>
+<p>将JSON字符串转换成JSON对象。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string text: JSON字符串</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: object JSON对象</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;{&quot;a&quot;, 0}&#39;</span><span class="p">);</span> <span class="c1">//返回{a : 0}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="event.html" title="事件(Event) API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qna.html" title="常见问题"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/core.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

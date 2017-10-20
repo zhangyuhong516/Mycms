@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/ke4/examples/file-dialog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:10 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>fileDialog Examples</title>
+		<link rel="stylesheet" href="../themes/default/default.css" />
+		<script src="../kindeditor.js"></script>
+		<script src="../lang/zh-CN.js"></script>
+		<script>
+			KindEditor.ready(function(K) {
+				var editor = K.editor({
+					allowFileManager : true
+				});
+				K('#insertfile').click(function() {
+					editor.loadPlugin('insertfile', function() {
+						editor.plugin.fileDialog({
+							fileUrl : K('#url').val(),
+							clickFn : function(url, title) {
+								K('#url').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input type="text" id="url" value="" /> <input type="button" id="insertfile" value="选择文件" />
+	</body>
+
+<!-- Mirrored from kindeditor.net/ke4/examples/file-dialog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:10 GMT -->
+</html>

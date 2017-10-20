@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/cmd.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="Ajax API" href="ajax.html" />
+    <link rel="prev" title="Range API" href="range.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ajax.html" title="Ajax API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="range.html" title="Range API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="command-api">
+<h1><a class="toc-backref" href="#id1">Command API</a><a class="headerlink" href="#command-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#command-api" id="id1">Command API</a><ul>
+<li><a class="reference internal" href="#k-cmd-doc" id="id2">K.cmd(doc)</a></li>
+<li><a class="reference internal" href="#doc" id="id3">doc</a></li>
+<li><a class="reference internal" href="#win" id="id4">win</a></li>
+<li><a class="reference internal" href="#sel" id="id5">sel</a></li>
+<li><a class="reference internal" href="#range" id="id6">range</a></li>
+<li><a class="reference internal" href="#selection-forcereset" id="id7">selection([forceReset])</a></li>
+<li><a class="reference internal" href="#select" id="id8">select()</a></li>
+<li><a class="reference internal" href="#wrap-val" id="id9">wrap(val)</a></li>
+<li><a class="reference internal" href="#split-isstart-map" id="id10">split(isStart , map)</a></li>
+<li><a class="reference internal" href="#remove-map" id="id11">remove(map)</a></li>
+<li><a class="reference internal" href="#commonancestor-tagname" id="id12">commonAncestor(tagName)</a></li>
+<li><a class="reference internal" href="#state-commandname" id="id13">state(commandName)</a></li>
+<li><a class="reference internal" href="#val-commandname" id="id14">val(commandName)</a></li>
+<li><a class="reference internal" href="#bold" id="id15">bold()</a></li>
+<li><a class="reference internal" href="#italic" id="id16">italic()</a></li>
+<li><a class="reference internal" href="#underline" id="id17">underline()</a></li>
+<li><a class="reference internal" href="#strikethrough" id="id18">strikethrough()</a></li>
+<li><a class="reference internal" href="#forecolor-val" id="id19">forecolor(val)</a></li>
+<li><a class="reference internal" href="#hilitecolor-val" id="id20">hilitecolor(val)</a></li>
+<li><a class="reference internal" href="#fontsize-val" id="id21">fontsize(val)</a></li>
+<li><a class="reference internal" href="#fontfamily-val" id="id22">fontfamily(val)</a></li>
+<li><a class="reference internal" href="#fontname-val" id="id23">fontname(val)</a></li>
+<li><a class="reference internal" href="#removeformat" id="id24">removeformat()</a></li>
+<li><a class="reference internal" href="#inserthtml-val" id="id25">inserthtml(val)</a></li>
+<li><a class="reference internal" href="#hr" id="id26">hr()</a></li>
+<li><a class="reference internal" href="#print" id="id27">print()</a></li>
+<li><a class="reference internal" href="#insertimage-url-title-width-height-border-align" id="id28">insertimage(url , title , width , height , border , align)</a></li>
+<li><a class="reference internal" href="#createlink-url-target" id="id29">createlink(url , target)</a></li>
+<li><a class="reference internal" href="#unlink" id="id30">unlink()</a></li>
+<li><a class="reference internal" href="#formatblock-val" id="id31">formatblock(val)</a></li>
+<li><a class="reference internal" href="#selectall" id="id32">selectall()</a></li>
+<li><a class="reference internal" href="#justifyleft" id="id33">justifyleft()</a></li>
+<li><a class="reference internal" href="#justifycenter" id="id34">justifycenter()</a></li>
+<li><a class="reference internal" href="#justifyright" id="id35">justifyright()</a></li>
+<li><a class="reference internal" href="#justifyfull" id="id36">justifyfull()</a></li>
+<li><a class="reference internal" href="#insertorderedlist" id="id37">insertorderedlist()</a></li>
+<li><a class="reference internal" href="#insertunorderedlist" id="id38">insertunorderedlist()</a></li>
+<li><a class="reference internal" href="#indent" id="id39">indent()</a></li>
+<li><a class="reference internal" href="#outdent" id="id40">outdent()</a></li>
+<li><a class="reference internal" href="#subscript" id="id41">subscript()</a></li>
+<li><a class="reference internal" href="#superscript" id="id42">superscript()</a></li>
+<li><a class="reference internal" href="#cut" id="id43">cut()</a></li>
+<li><a class="reference internal" href="#copy" id="id44">copy()</a></li>
+<li><a class="reference internal" href="#paste" id="id45">paste()</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-cmd-doc">
+<span id="k-cmd"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.cmd(doc)</a><a class="headerlink" href="#k-cmd-doc" title="Permalink to this headline">¶</a></h2>
+<p>创建KCmd对象，KCmd用于操作可视化编辑区域的DOM。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>document doc: document或KRange ( <a class="reference internal" href="range.html"><span class="doc">Range API</span></a> )</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">cmd</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">cmd</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">cmd</span><span class="p">.</span><span class="nx">bold</span><span class="p">();</span>
+<span class="nx">cmd</span><span class="p">.</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;span style=&quot;color:red;&quot;&gt;&lt;/span&gt;&#39;</span><span class="p">);</span>
+<span class="nx">cmd</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span>
+        <span class="nx">span</span> <span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+        <span class="nx">div</span> <span class="o">:</span> <span class="s1">&#39;class,border&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="doc">
+<span id="kcmd-doc"></span><span id="index-1"></span><h2><a class="toc-backref" href="#id3">doc</a><a class="headerlink" href="#doc" title="Permalink to this headline">¶</a></h2>
+<p>document对象。</p>
+</div>
+<div class="section" id="win">
+<span id="kcmd-win"></span><span id="index-2"></span><h2><a class="toc-backref" href="#id4">win</a><a class="headerlink" href="#win" title="Permalink to this headline">¶</a></h2>
+<p>window对象。</p>
+</div>
+<div class="section" id="sel">
+<span id="kcmd-sel"></span><span id="index-3"></span><h2><a class="toc-backref" href="#id5">sel</a><a class="headerlink" href="#sel" title="Permalink to this headline">¶</a></h2>
+<p>原生selection对象。</p>
+</div>
+<div class="section" id="range">
+<span id="kcmd-range"></span><span id="index-4"></span><h2><a class="toc-backref" href="#id6">range</a><a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h2>
+<p>KRange对象 ( <a class="reference internal" href="range.html"><span class="doc">Range API</span></a> )</p>
+</div>
+<div class="section" id="selection-forcereset">
+<span id="kcmd-selection"></span><span id="index-5"></span><h2><a class="toc-backref" href="#id7">selection([forceReset])</a><a class="headerlink" href="#selection-forcereset" title="Permalink to this headline">¶</a></h2>
+<p>根据当前选中状态，重新设置range。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Boolean forceReset: 默认值为false，值为true时如果当前没有选中信息，自动选择文档的最后位置，</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">cmd</span><span class="p">.</span><span class="nx">selection</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="select">
+<span id="kcmd-select"></span><span id="index-6"></span><h2><a class="toc-backref" href="#id8">select()</a><a class="headerlink" href="#select" title="Permalink to this headline">¶</a></h2>
+<p>选中range。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">cmd</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wrap-val">
+<span id="kcmd-wrap"></span><span id="index-7"></span><h2><a class="toc-backref" href="#id9">wrap(val)</a><a class="headerlink" href="#wrap-val" title="Permalink to this headline">¶</a></h2>
+<p>用指定element围住range。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string|node val: DOM元素、HTML代码</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">cmd</span><span class="p">.</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;strong&gt;&lt;/strong&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="split-isstart-map">
+<span id="kcmd-split"></span><span id="index-8"></span><h2><a class="toc-backref" href="#id10">split(isStart , map)</a><a class="headerlink" href="#split-isstart-map" title="Permalink to this headline">¶</a></h2>
+<p>根据map规则分割range的开始位置或结束位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>boolean isStart: true或false</li>
+<li>object map: 规则</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">cmd</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">span</span> <span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+        <span class="nx">div</span> <span class="o">:</span> <span class="s1">&#39;class,border&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remove-map">
+<span id="kcmd-remove"></span><span id="index-9"></span><h2><a class="toc-backref" href="#id11">remove(map)</a><a class="headerlink" href="#remove-map" title="Permalink to this headline">¶</a></h2>
+<p>根据map规则删除range中的element或attribute。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object map: 规则</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">cmd</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span>
+        <span class="nx">span</span> <span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+        <span class="nx">div</span> <span class="o">:</span> <span class="s1">&#39;class,border&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="commonancestor-tagname">
+<span id="kcmd-commonancestor"></span><span id="index-10"></span><h2><a class="toc-backref" href="#id12">commonAncestor(tagName)</a><a class="headerlink" href="#commonancestor-tagname" title="Permalink to this headline">¶</a></h2>
+<p>根据map规则取得range的共同祖先。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string tagName: 规则</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KNode ( <a class="reference internal" href="node.html"><span class="doc">Node API</span></a> )</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">knode</span> <span class="o">=</span> <span class="nx">cmd</span><span class="p">.</span><span class="nx">commonAncestor</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="state-commandname">
+<span id="kcmd-state"></span><span id="index-11"></span><h2><a class="toc-backref" href="#id13">state(commandName)</a><a class="headerlink" href="#state-commandname" title="Permalink to this headline">¶</a></h2>
+<p>Determines whether the given command has been executed on the current selection.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string commandName: 命令名</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: boolean</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reference: <a class="reference external" href="https://developer.mozilla.org/en/Midas">https://developer.mozilla.org/en/Midas</a></p>
+</div>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">bool</span> <span class="o">=</span> <span class="nx">cmd</span><span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">&#39;bold&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="val-commandname">
+<span id="kcmd-val"></span><span id="index-12"></span><h2><a class="toc-backref" href="#id14">val(commandName)</a><a class="headerlink" href="#val-commandname" title="Permalink to this headline">¶</a></h2>
+<p>Determines the current value of the document, range, or current selection for the given command.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string commandName: 命令名</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">fontSize</span> <span class="o">=</span> <span class="nx">cmd</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;fontsize&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">目前只支持以下命令:
+* fontfamily (fontname)
+* formatblock
+* forecolor
+* hilitecolor</p>
+</div>
+</div>
+<div class="section" id="bold">
+<span id="kcmd-bold"></span><span id="index-13"></span><h2><a class="toc-backref" href="#id15">bold()</a><a class="headerlink" href="#bold" title="Permalink to this headline">¶</a></h2>
+<p>粗体</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="italic">
+<span id="kcmd-italic"></span><span id="index-14"></span><h2><a class="toc-backref" href="#id16">italic()</a><a class="headerlink" href="#italic" title="Permalink to this headline">¶</a></h2>
+<p>斜体</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="underline">
+<span id="kcmd-underline"></span><span id="index-15"></span><h2><a class="toc-backref" href="#id17">underline()</a><a class="headerlink" href="#underline" title="Permalink to this headline">¶</a></h2>
+<p>下划线</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="strikethrough">
+<span id="kcmd-strikethrough"></span><span id="index-16"></span><h2><a class="toc-backref" href="#id18">strikethrough()</a><a class="headerlink" href="#strikethrough" title="Permalink to this headline">¶</a></h2>
+<p>删除线</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="forecolor-val">
+<span id="kcmd-forecolor"></span><span id="index-17"></span><h2><a class="toc-backref" href="#id19">forecolor(val)</a><a class="headerlink" href="#forecolor-val" title="Permalink to this headline">¶</a></h2>
+<p>文字颜色</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 颜色</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="hilitecolor-val">
+<span id="kcmd-hilitecolor"></span><span id="index-18"></span><h2><a class="toc-backref" href="#id20">hilitecolor(val)</a><a class="headerlink" href="#hilitecolor-val" title="Permalink to this headline">¶</a></h2>
+<p>文字背景</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 颜色</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="fontsize-val">
+<span id="kcmd-fontsize"></span><span id="index-19"></span><h2><a class="toc-backref" href="#id21">fontsize(val)</a><a class="headerlink" href="#fontsize-val" title="Permalink to this headline">¶</a></h2>
+<p>文字大小</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 文字大小</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="fontfamily-val">
+<span id="kcmd-fontfamily"></span><span id="index-20"></span><h2><a class="toc-backref" href="#id22">fontfamily(val)</a><a class="headerlink" href="#fontfamily-val" title="Permalink to this headline">¶</a></h2>
+<p>字体</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 字体</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="fontname-val">
+<span id="kcmd-fontname"></span><span id="index-21"></span><h2><a class="toc-backref" href="#id23">fontname(val)</a><a class="headerlink" href="#fontname-val" title="Permalink to this headline">¶</a></h2>
+<p>字体， <a class="reference internal" href="#kcmd-fontfamily"><span class="std std-ref">fontfamily(val)</span></a> 的别名。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 字体</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="removeformat">
+<span id="kcmd-removeformat"></span><span id="index-22"></span><h2><a class="toc-backref" href="#id24">removeformat()</a><a class="headerlink" href="#removeformat" title="Permalink to this headline">¶</a></h2>
+<p>删除inline样式</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="inserthtml-val">
+<span id="kcmd-inserthtml"></span><span id="index-23"></span><h2><a class="toc-backref" href="#id25">inserthtml(val)</a><a class="headerlink" href="#inserthtml-val" title="Permalink to this headline">¶</a></h2>
+<p>插入HTML</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: HTML</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="hr">
+<span id="kcmd-hr"></span><span id="index-24"></span><h2><a class="toc-backref" href="#id26">hr()</a><a class="headerlink" href="#hr" title="Permalink to this headline">¶</a></h2>
+<p>插入水平线</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="print">
+<span id="kcmd-print"></span><span id="index-25"></span><h2><a class="toc-backref" href="#id27">print()</a><a class="headerlink" href="#print" title="Permalink to this headline">¶</a></h2>
+<p>弹出打印窗口</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="insertimage-url-title-width-height-border-align">
+<span id="kcmd-insertimage"></span><span id="index-26"></span><h2><a class="toc-backref" href="#id28">insertimage(url , title , width , height , border , align)</a><a class="headerlink" href="#insertimage-url-title-width-height-border-align" title="Permalink to this headline">¶</a></h2>
+<p>插入图片</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string url: 图片URL</li>
+<li>string title: 图片alt</li>
+<li>int width: 图片宽度</li>
+<li>int height: 图片高度</li>
+<li>int border: 图片边框</li>
+<li>string align: 对齐方式</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="createlink-url-target">
+<span id="kcmd-createlink"></span><span id="index-27"></span><h2><a class="toc-backref" href="#id29">createlink(url , target)</a><a class="headerlink" href="#createlink-url-target" title="Permalink to this headline">¶</a></h2>
+<p>超级链接</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string url: URL</li>
+<li>string target: 打开方式</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="unlink">
+<span id="kcmd-unlink"></span><span id="index-28"></span><h2><a class="toc-backref" href="#id30">unlink()</a><a class="headerlink" href="#unlink" title="Permalink to this headline">¶</a></h2>
+<p>取消超级链接</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="formatblock-val">
+<span id="kcmd-formatblock"></span><span id="index-29"></span><h2><a class="toc-backref" href="#id31">formatblock(val)</a><a class="headerlink" href="#formatblock-val" title="Permalink to this headline">¶</a></h2>
+<p>段落</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 段落标签</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KCmd</p>
+</li>
+</ul>
+</div>
+<div class="section" id="selectall">
+<span id="kcmd-selectall"></span><span id="index-30"></span><h2><a class="toc-backref" href="#id32">selectall()</a><a class="headerlink" href="#selectall" title="Permalink to this headline">¶</a></h2>
+<p>全选</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="justifyleft">
+<span id="kcmd-justifyleft"></span><span id="index-31"></span><h2><a class="toc-backref" href="#id33">justifyleft()</a><a class="headerlink" href="#justifyleft" title="Permalink to this headline">¶</a></h2>
+<p>左对齐</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="justifycenter">
+<span id="kcmd-justifycenter"></span><span id="index-32"></span><h2><a class="toc-backref" href="#id34">justifycenter()</a><a class="headerlink" href="#justifycenter" title="Permalink to this headline">¶</a></h2>
+<p>居中</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="justifyright">
+<span id="kcmd-justifyright"></span><span id="index-33"></span><h2><a class="toc-backref" href="#id35">justifyright()</a><a class="headerlink" href="#justifyright" title="Permalink to this headline">¶</a></h2>
+<p>右对齐</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="justifyfull">
+<span id="kcmd-justifyfull"></span><span id="index-34"></span><h2><a class="toc-backref" href="#id36">justifyfull()</a><a class="headerlink" href="#justifyfull" title="Permalink to this headline">¶</a></h2>
+<p>两端对齐</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="insertorderedlist">
+<span id="kcmd-insertorderedlist"></span><span id="index-35"></span><h2><a class="toc-backref" href="#id37">insertorderedlist()</a><a class="headerlink" href="#insertorderedlist" title="Permalink to this headline">¶</a></h2>
+<p>编号</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="insertunorderedlist">
+<span id="kcmd-insertunorderedlist"></span><span id="index-36"></span><h2><a class="toc-backref" href="#id38">insertunorderedlist()</a><a class="headerlink" href="#insertunorderedlist" title="Permalink to this headline">¶</a></h2>
+<p>项目符号</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="indent">
+<span id="kcmd-indent"></span><span id="index-37"></span><h2><a class="toc-backref" href="#id39">indent()</a><a class="headerlink" href="#indent" title="Permalink to this headline">¶</a></h2>
+<p>增加缩进</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="outdent">
+<span id="kcmd-outdent"></span><span id="index-38"></span><h2><a class="toc-backref" href="#id40">outdent()</a><a class="headerlink" href="#outdent" title="Permalink to this headline">¶</a></h2>
+<p>减少缩进</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="subscript">
+<span id="kcmd-subscript"></span><span id="index-39"></span><h2><a class="toc-backref" href="#id41">subscript()</a><a class="headerlink" href="#subscript" title="Permalink to this headline">¶</a></h2>
+<p>下标</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="superscript">
+<span id="kcmd-superscript"></span><span id="index-40"></span><h2><a class="toc-backref" href="#id42">superscript()</a><a class="headerlink" href="#superscript" title="Permalink to this headline">¶</a></h2>
+<p>上标</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="cut">
+<span id="kcmd-cut"></span><span id="index-41"></span><h2><a class="toc-backref" href="#id43">cut()</a><a class="headerlink" href="#cut" title="Permalink to this headline">¶</a></h2>
+<p>剪切</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="copy">
+<span id="kcmd-copy"></span><span id="index-42"></span><h2><a class="toc-backref" href="#id44">copy()</a><a class="headerlink" href="#copy" title="Permalink to this headline">¶</a></h2>
+<p>复制</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+<div class="section" id="paste">
+<span id="kcmd-paste"></span><span id="index-43"></span><h2><a class="toc-backref" href="#id45">paste()</a><a class="headerlink" href="#paste" title="Permalink to this headline">¶</a></h2>
+<p>粘贴</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KCmd</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ajax.html" title="Ajax API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="range.html" title="Range API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/cmd.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

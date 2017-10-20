@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/selector.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="Node API" href="node.html" />
+    <link rel="prev" title="事件(Event) API" href="event.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="node.html" title="Node API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="event.html" title="事件(Event) API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="selector-api">
+<h1><a class="toc-backref" href="#id1">选择器(Selector) API</a><a class="headerlink" href="#selector-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#selector-api" id="id1">选择器(Selector) API</a><ul>
+<li><a class="reference internal" href="#k-query-expr-root" id="id2">K.query(expr [, root])</a></li>
+<li><a class="reference internal" href="#k-queryall-expr-root" id="id3">K.queryAll(expr [, root])</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-query-expr-root">
+<span id="query"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.query(expr [, root])</a><a class="headerlink" href="#k-query-expr-root" title="Permalink to this headline">¶</a></h2>
+<p>根据expr在root范围内查找DOM元素，并返回第一个元素。没找到则返回null。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string expr: 选择器表达式</li>
+<li>element root: 根元素，默认值为document</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: DOM元素</p>
+</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">&#39;#id div&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">span</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">&#39;span.class&#39;</span><span class="p">,</span> <span class="nx">div</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>目前仅支持以下表达式:</p>
+<ul class="last simple">
+<li>*: any element</li>
+<li>E: an element of type E</li>
+<li>E[foo]: an E element with a &#8220;foo&#8221; attribute</li>
+<li>E[foo=&#8221;bar&#8221;]: an E element whose &#8220;foo&#8221; attribute value is exactly equal to &#8220;bar&#8221;</li>
+<li>E.warning: an E element whose class is &#8220;warning&#8221; (the document language specifies how class is determined)</li>
+<li>E#myid: an E element with ID equal to &#8220;myid&#8221;</li>
+<li>E F: an F element descendant of an E element</li>
+<li>E &gt; F: an F element child of an E element</li>
+</ul>
+</div>
+<p>参考文档: <a class="reference external" href="http://www.w3.org/TR/css3-selectors/">http://www.w3.org/TR/css3-selectors/</a></p>
+</div>
+<div class="section" id="k-queryall-expr-root">
+<span id="queryall"></span><span id="index-1"></span><h2><a class="toc-backref" href="#id3">K.queryAll(expr [, root])</a><a class="headerlink" href="#k-queryall-expr-root" title="Permalink to this headline">¶</a></h2>
+<p>根据expr在root范围内查找DOM元素，并返回所有元素，如果没找到则返回空数组。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string expr: 选择器表达式</li>
+<li>element root: 根元素，默认值为document</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: array</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">divArray</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="s1">&#39;#id div&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">spanArray</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="s1">&#39;span.class&#39;</span><span class="p">,</span> <span class="nx">div</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="node.html" title="Node API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="event.html" title="事件(Event) API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/selector.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

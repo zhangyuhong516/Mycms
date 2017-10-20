@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/ajax.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="Widget API" href="widget.html" />
+    <link rel="prev" title="Command API" href="cmd.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="widget.html" title="Widget API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmd.html" title="Command API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ajax-api">
+<h1><a class="toc-backref" href="#id1">Ajax API</a><a class="headerlink" href="#ajax-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#ajax-api" id="id1">Ajax API</a><ul>
+<li><a class="reference internal" href="#k-loadscript-url-fn" id="id2">K.loadScript(url [, fn])</a></li>
+<li><a class="reference internal" href="#k-loadstyle-url" id="id3">K.loadStyle(url)</a></li>
+<li><a class="reference internal" href="#k-ajax-url-fn-method-data" id="id4">K.ajax(url [, fn , method , data])</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-loadscript-url-fn">
+<span id="loadscript"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.loadScript(url [, fn])</a><a class="headerlink" href="#k-loadscript-url-fn" title="Permalink to this headline">¶</a></h2>
+<p>加载JavaScript文件。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string url: JavaScript URL</li>
+<li>function fn: 回调函数</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">loadScript</span><span class="p">(</span><span class="s1">&#39;test.js&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ok&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-loadstyle-url">
+<span id="loadstyle"></span><span id="index-1"></span><h2><a class="toc-backref" href="#id3">K.loadStyle(url)</a><a class="headerlink" href="#k-loadstyle-url" title="Permalink to this headline">¶</a></h2>
+<p>加载CSS文件。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string url: CSS URL</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">loadStyle</span><span class="p">(</span><span class="s1">&#39;test.css&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="k-ajax-url-fn-method-data">
+<span id="ajax"></span><span id="index-2"></span><h2><a class="toc-backref" href="#id4">K.ajax(url [, fn , method , data])</a><a class="headerlink" href="#k-ajax-url-fn-method-data" title="Permalink to this headline">¶</a></h2>
+<p>GET或POST请求。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string url: JavaScript URL</li>
+<li>function fn: 回调函数</li>
+<li>string method: &#8220;GET&#8221;或&#8221;POST&#8221;，默认值为&#8221;GET&#8221;</li>
+<li>object data: POST数据，key-value格式</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">//GET</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;test.php&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">//POST</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;test.php&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">aa</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">bb</span> <span class="o">:</span> <span class="mi">2</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="widget.html" title="Widget API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmd.html" title="Command API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/ajax.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/qna.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="基础(Base) API" href="core.html" />
+    <link rel="prev" title="上传文件" href="upload.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="core.html" title="基础(Base) API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="upload.html" title="上传文件"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id3">常见问题</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id3">常见问题</a><ul>
+<li><a class="reference internal" href="#utf-8-gb2312" id="id4">编辑器好像是UTF-8编码的，可以在GB2312页面上使用吗？</a></li>
+<li><a class="reference internal" href="#textareavalue" id="id5">我取不到编辑器数据，直接取得textarea的value也没用。</a></li>
+<li><a class="reference internal" href="#id2" id="id6">为什么有些标签被过滤？</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="utf-8-gb2312">
+<h2><a class="toc-backref" href="#id4">编辑器好像是UTF-8编码的，可以在GB2312页面上使用吗？</a><a class="headerlink" href="#utf-8-gb2312" title="Permalink to this headline">¶</a></h2>
+<p>可以使用。有两种方法，一种方法是引入kindeditor.js文件时将script的charset属性设置成utf-8。</p>
+<p>还有一种方法是直接将html/js/css文件编码都转换成GB2312编码（用Notepad++、editPlus等文本编辑器就可以转换编码），不过转换格式后升级比较困难，建议使用第一种方法。</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/editor/kindeditor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="textareavalue">
+<h2><a class="toc-backref" href="#id5">我取不到编辑器数据，直接取得textarea的value也没用。</a><a class="headerlink" href="#textareavalue" title="Permalink to this headline">¶</a></h2>
+<p>KindEditor的可视化操作在新创建的iframe上执行，代码模式下的textarea框也是新创建的，所以最后提交前需要执行 <a class="reference internal" href="editor.html#keditor-sync"><span class="std std-ref">sync()</span></a> 将HTML数据设置到原来的textarea。</p>
+<p>KindEditor在默认情况下自动寻找textarea所属的form元素，找到form后onsubmit事件里添加editor.sync()函数，所以用form方式提交数据，不需要手动执行editor.sync()函数。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// 将编辑器的HTML数据同步到textarea</span>
+<span class="nx">editor</span><span class="p">.</span><span class="nx">sync</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6">为什么有些标签被过滤？</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>KindEditor默认采用白名单过滤方式，可用 <a class="reference internal" href="option.html#htmltags"><span class="std std-ref">htmlTags</span></a> 参数定义要保留的标签和属性。当然也可以用 <a class="reference internal" href="option.html#filtermode"><span class="std std-ref">filterMode</span></a> 参数关闭过滤模式，保留所有标签。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// 关闭过滤模式，保留所有标签</span>
+<span class="nx">KindEditor</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">filterMode</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="core.html" title="基础(Base) API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="upload.html" title="上传文件"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/qna.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

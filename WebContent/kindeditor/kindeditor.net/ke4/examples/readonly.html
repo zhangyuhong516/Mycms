@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/ke4/examples/readonly.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:07 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>Readonly Examples</title>
+		<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="../themes/default/default.css" />
+		<script charset="utf-8" src="../kindeditor-min.js"></script>
+		<script charset="utf-8" src="../lang/zh-CN.js"></script>
+		<script>
+			KindEditor.ready(function(K) {
+				var editor = K.create('textarea[name="content"]', {
+					readonlyMode : true
+				});
+				// 设置成只读状态
+				K('input[name=readonly]').click(function() {
+					editor.readonly();
+				});
+				// 取消只读状态
+				K('input[name=cancel]').click(function() {
+					editor.readonly(false);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-7116729301372758";
+		/* 更多演示（728x90） */
+		google_ad_slot = "5052271949";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+		</script>
+		<h3>只读模式</h3>
+		<form>
+			<textarea name="content" style="width:800px;height:200px;"></textarea>
+			<p>
+				<input type="button" name="readonly" value="设置成只读状态" />
+				<input type="button" name="cancel" value="取消只读状态" />
+			</p>
+		</form>
+	</body>
+
+<!-- Mirrored from kindeditor.net/ke4/examples/readonly.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:07 GMT -->
+</html>

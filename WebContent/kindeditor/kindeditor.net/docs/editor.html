@@ -1,0 +1,949 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/editor.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="3.x升级到4.x版本" href="upgrade.html" />
+    <link rel="prev" title="上传按钮(UplaodButton) API" href="uploadbutton.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="upgrade.html" title="3.x升级到4.x版本"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="uploadbutton.html" title="上传按钮(UplaodButton) API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="editor-api">
+<h1><a class="toc-backref" href="#id1">编辑器(Editor) API</a><a class="headerlink" href="#editor-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#editor-api" id="id1">编辑器(Editor) API</a><ul>
+<li><a class="reference internal" href="#k-create-expr-options" id="id2">K.create(expr [, options])</a></li>
+<li><a class="reference internal" href="#k-remove-expr" id="id3">K.remove(expr)</a></li>
+<li><a class="reference internal" href="#k-sync-expr" id="id4">K.sync(expr)</a></li>
+<li><a class="reference internal" href="#k-html-expr-val" id="id5">K.html(expr, val)</a></li>
+<li><a class="reference internal" href="#k-appendhtml-expr-val" id="id6">K.appendHtml(expr, val)</a></li>
+<li><a class="reference internal" href="#k-inserthtml-expr-val" id="id7">K.insertHtml(expr, val)</a></li>
+<li><a class="reference internal" href="#remove" id="id8">remove()</a></li>
+<li><a class="reference internal" href="#html" id="id9">html()</a></li>
+<li><a class="reference internal" href="#html-val" id="id10">html(val)</a></li>
+<li><a class="reference internal" href="#fullhtml" id="id11">fullHtml()</a></li>
+<li><a class="reference internal" href="#text" id="id12">text()</a></li>
+<li><a class="reference internal" href="#text-val" id="id13">text(val)</a></li>
+<li><a class="reference internal" href="#selectedhtml" id="id14">selectedHtml()</a></li>
+<li><a class="reference internal" href="#count-mode" id="id15">count([mode])</a></li>
+<li><a class="reference internal" href="#isempty" id="id16">isEmpty()</a></li>
+<li><a class="reference internal" href="#inserthtml-val" id="id17">insertHtml(val)</a></li>
+<li><a class="reference internal" href="#appendhtml-val" id="id18">appendHtml(val)</a></li>
+<li><a class="reference internal" href="#focus" id="id19">focus()</a></li>
+<li><a class="reference internal" href="#blur" id="id20">blur()</a></li>
+<li><a class="reference internal" href="#sync" id="id21">sync()</a></li>
+<li><a class="reference internal" href="#exec-commandname" id="id22">exec(commandName)</a></li>
+<li><a class="reference internal" href="#lang-name" id="id23">lang(name)</a></li>
+<li><a class="reference internal" href="#loadplugin-name-fn" id="id24">loadPlugin(name , fn)</a></li>
+<li><a class="reference internal" href="#clicktoolbar-name" id="id25">clickToolbar(name)</a></li>
+<li><a class="reference internal" href="#clicktoolbar-name-fn" id="id26">clickToolbar(name [, fn])</a></li>
+<li><a class="reference internal" href="#addbookmark" id="id27">addBookmark()</a></li>
+<li><a class="reference internal" href="#undo" id="id28">undo()</a></li>
+<li><a class="reference internal" href="#redo" id="id29">redo()</a></li>
+<li><a class="reference internal" href="#fullscreen-bool" id="id30">fullscreen([bool])</a></li>
+<li><a class="reference internal" href="#readonly-isreadonly" id="id31">readonly(isReadonly)</a></li>
+<li><a class="reference internal" href="#createmenu-options" id="id32">createMenu(options)</a></li>
+<li><a class="reference internal" href="#hidemenu" id="id33">hideMenu()</a></li>
+<li><a class="reference internal" href="#addcontextmenu-item" id="id34">addContextmenu(item)</a></li>
+<li><a class="reference internal" href="#hidecontextmenu" id="id35">hideContextmenu()</a></li>
+<li><a class="reference internal" href="#createdialog-options" id="id36">createDialog(options)</a></li>
+<li><a class="reference internal" href="#hidedialog" id="id37">hideDialog()</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-create-expr-options">
+<span id="k-create"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.create(expr [, options])</a><a class="headerlink" href="#k-create-expr-options" title="Permalink to this headline">¶</a></h2>
+<p>创建编辑器，返回第一个KEditor对象。4.1版本开始expr支持多个textarea，之前版本只在第一个textarea上创建。</p>
+<p>创建编辑器后可以用 KindEditor.instances 数组取得已创建的所有KEditor对象。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed expr: element或选择器</li>
+<li>object options: <a class="reference internal" href="option.html"><span class="doc">编辑器初始化参数</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// 1</span>
+<span class="c1">// editor 等于 KindEditor.instances[0]</span>
+<span class="nx">editor</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;textarea[name=&quot;content&quot;]&#39;</span><span class="p">);</span>
+<span class="nx">editor</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;HTML code&#39;</span><span class="p">);</span>
+
+<span class="c1">// 2</span>
+<span class="nx">editor</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">filterMode</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">langType</span> <span class="o">:</span> <span class="s1">&#39;en&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.2版本开始expr可以直接传入jQuery对象。</p>
+</div>
+</div>
+<div class="section" id="k-remove-expr">
+<span id="k-remove"></span><span id="index-1"></span><h2><a class="toc-backref" href="#id3">K.remove(expr)</a><a class="headerlink" href="#k-remove-expr" title="Permalink to this headline">¶</a></h2>
+<p>移除多个编辑器。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed expr: element或选择器</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// 移除ID为editor_id的编辑器</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">);</span>
+
+<span class="c1">// 移除class为editor-class的编辑器</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;.editor-class&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.2版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="k-sync-expr">
+<span id="k-sync"></span><span id="index-2"></span><h2><a class="toc-backref" href="#id4">K.sync(expr)</a><a class="headerlink" href="#k-sync-expr" title="Permalink to this headline">¶</a></h2>
+<p>将多个编辑器的内容设置到原来的textarea控件里。。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed expr: element或选择器</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// 同步ID为editor_id的编辑器</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">sync</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">);</span>
+
+<span class="c1">// 同步class为editor的编辑器</span>
+<span class="nx">K</span><span class="p">.</span><span class="nx">sync</span><span class="p">(</span><span class="s1">&#39;.editor&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.2版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="k-html-expr-val">
+<span id="k-html"></span><span id="index-3"></span><h2><a class="toc-backref" href="#id5">K.html(expr, val)</a><a class="headerlink" href="#k-html-expr-val" title="Permalink to this headline">¶</a></h2>
+<p>设置多个编辑器的HTML内容。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed expr: element或选择器</li>
+<li>string val: HTML内容</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;div&gt;HTML&lt;/div&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.8版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="k-appendhtml-expr-val">
+<span id="k-appendhtml"></span><span id="index-4"></span><h2><a class="toc-backref" href="#id6">K.appendHtml(expr, val)</a><a class="headerlink" href="#k-appendhtml-expr-val" title="Permalink to this headline">¶</a></h2>
+<p>将指定的HTML内容添加到多个编辑器的最后位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed expr: element或选择器</li>
+<li>string val: 内容</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">appendHtml</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;div&gt;HTML&lt;/div&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.8版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="k-inserthtml-expr-val">
+<span id="k-inserthtml"></span><span id="index-5"></span><h2><a class="toc-backref" href="#id7">K.insertHtml(expr, val)</a><a class="headerlink" href="#k-inserthtml-expr-val" title="Permalink to this headline">¶</a></h2>
+<p>将指定的HTML内容插入到多个编辑器的光标处。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>mixed expr: element或选择器</li>
+<li>string val: 内容</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: undefined</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">insertHtml</span><span class="p">(</span><span class="s1">&#39;#editor_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;strong&gt;HTML&lt;/strong&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">4.1.8版本开始支持。</p>
+</div>
+</div>
+<div class="section" id="remove">
+<span id="keditor-remove"></span><span id="index-6"></span><h2><a class="toc-backref" href="#id8">remove()</a><a class="headerlink" href="#remove" title="Permalink to this headline">¶</a></h2>
+<p>移除编辑器。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="html">
+<span id="keditor-html"></span><span id="index-7"></span><h2><a class="toc-backref" href="#id9">html()</a><a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
+<p>取得编辑器的HTML内容。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: string</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="html-val">
+<h2><a class="toc-backref" href="#id10">html(val)</a><a class="headerlink" href="#html-val" title="Permalink to this headline">¶</a></h2>
+<p>设置编辑器的HTML内容。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: HTML</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&lt;strong&gt;HTML&lt;/strong&gt; code&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fullhtml">
+<span id="keditor-fullhtml"></span><span id="index-8"></span><h2><a class="toc-backref" href="#id11">fullHtml()</a><a class="headerlink" href="#fullhtml" title="Permalink to this headline">¶</a></h2>
+<p>取得完整的HTML内容，HTML包含&lt;html&gt;标签。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: string</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">fullHtml</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">fullHtml</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="text">
+<span id="keditor-text"></span><span id="index-9"></span><h2><a class="toc-backref" href="#id12">text()</a><a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h2>
+<p>取得编辑器的纯文本内容。(包含img和embed)</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: string</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="text-val">
+<h2><a class="toc-backref" href="#id13">text(val)</a><a class="headerlink" href="#text-val" title="Permalink to this headline">¶</a></h2>
+<p>设置编辑器的内容，直接显示HTML代码。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: 文本</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;&lt;strong&gt;HTML&lt;/strong&gt; code&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selectedhtml">
+<span id="keditor-selectedhtml"></span><span id="index-10"></span><h2><a class="toc-backref" href="#id14">selectedHtml()</a><a class="headerlink" href="#selectedhtml" title="Permalink to this headline">¶</a></h2>
+<p>取得当前被选中的HTML内容。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: string</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">selectedHtml</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="count-mode">
+<span id="keditor-count"></span><span id="index-11"></span><h2><a class="toc-backref" href="#id15">count([mode])</a><a class="headerlink" href="#count-mode" title="Permalink to this headline">¶</a></h2>
+<p>取得当前被选中的HTML内容。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string mode: 可选参数，默认值为&#8221;html&#8221;，mode为&#8221;html&#8221;时取得字数包含HTML代码，mode为&#8221;text&#8221;时只包含纯文本、IMG、EMBED。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: Int</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">htmlCount</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+<span class="nx">textCount</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">count</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="isempty">
+<span id="keditor-isempty"></span><span id="index-12"></span><h2><a class="toc-backref" href="#id16">isEmpty()</a><a class="headerlink" href="#isempty" title="Permalink to this headline">¶</a></h2>
+<p>判断编辑器是否有可见内容，比如文本、图片、视频。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: Boolean</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">editor</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;请输入内容。&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inserthtml-val">
+<span id="keditor-inserthtml"></span><span id="index-13"></span><h2><a class="toc-backref" href="#id17">insertHtml(val)</a><a class="headerlink" href="#inserthtml-val" title="Permalink to this headline">¶</a></h2>
+<p>将指定的HTML内容插入到编辑区域里的光标处。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: HTML</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">insertHtml</span><span class="p">(</span><span class="s1">&#39;&lt;strong&gt;HTML&lt;/strong&gt; code&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="appendhtml-val">
+<span id="keditor-appendhtml"></span><span id="index-14"></span><h2><a class="toc-backref" href="#id18">appendHtml(val)</a><a class="headerlink" href="#appendhtml-val" title="Permalink to this headline">¶</a></h2>
+<p>将指定的HTML内容添加到编辑区域的最后位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string val: HTML</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">appendHtml</span><span class="p">(</span><span class="s1">&#39;&lt;strong&gt;HTML&lt;/strong&gt; code&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="focus">
+<span id="keditor-focus"></span><span id="index-15"></span><h2><a class="toc-backref" href="#id19">focus()</a><a class="headerlink" href="#focus" title="Permalink to this headline">¶</a></h2>
+<p>编辑器聚焦。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="blur">
+<span id="keditor-blur"></span><span id="index-16"></span><h2><a class="toc-backref" href="#id20">blur()</a><a class="headerlink" href="#blur" title="Permalink to this headline">¶</a></h2>
+<p>编辑器失去焦点。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sync">
+<span id="keditor-sync"></span><span id="index-17"></span><h2><a class="toc-backref" href="#id21">sync()</a><a class="headerlink" href="#sync" title="Permalink to this headline">¶</a></h2>
+<p>将编辑器的内容设置到原来的textarea控件里。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">sync</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exec-commandname">
+<span id="keditor-exec"></span><span id="index-18"></span><h2><a class="toc-backref" href="#id22">exec(commandName)</a><a class="headerlink" href="#exec-commandname" title="Permalink to this headline">¶</a></h2>
+<p>执行编辑命令，替代document.execCommmand接口。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string commandName: 命令名</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>目前可用的命令:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="19%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">commandName</th>
+<th class="head">描述</th>
+<th class="head">示例</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>bold</td>
+<td>粗体</td>
+<td>editor.exec(&#8216;bold&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>italic</td>
+<td>斜体</td>
+<td>editor.exec(&#8216;italic&#8217;);</td>
+</tr>
+<tr class="row-even"><td>underline</td>
+<td>下划线</td>
+<td>editor.exec(&#8216;underline&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>strikethrough</td>
+<td>删除线</td>
+<td>editor.exec(&#8216;strikethrough&#8217;);</td>
+</tr>
+<tr class="row-even"><td>forecolor</td>
+<td>文字颜色</td>
+<td>editor.exec(&#8216;forecolor&#8217;, &#8216;#333&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>hilitecolor</td>
+<td>文字背景</td>
+<td>editor.exec(&#8216;hilitecolor&#8217;, &#8216;#eee&#8217;);</td>
+</tr>
+<tr class="row-even"><td>fontsize</td>
+<td>文字大小</td>
+<td>editor.exec(&#8216;fontsize&#8217;, &#8216;14px&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>fontfamily</td>
+<td>字体</td>
+<td>editor.exec(&#8216;fontfamily&#8217;, &#8216;SimHei&#8217;);</td>
+</tr>
+<tr class="row-even"><td>fontname</td>
+<td>字体，fontfamily的别名</td>
+<td>editor.exec(&#8216;fontname&#8217;, &#8216;SimHei&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>removeformat</td>
+<td>删除inline样式</td>
+<td>editor.exec(&#8216;removeformat&#8217;);</td>
+</tr>
+<tr class="row-even"><td>inserthtml</td>
+<td>插入HTML</td>
+<td>editor.exec(&#8216;inserthtml&#8217;, &#8216;&lt;strong&gt;HTML&lt;/strong&gt;&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>hr</td>
+<td>插入水平线</td>
+<td>editor.exec(&#8216;hr&#8217;);</td>
+</tr>
+<tr class="row-even"><td>print</td>
+<td>弹出打印窗口</td>
+<td>editor.exec(&#8216;print&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>insertimage</td>
+<td>插入图片</td>
+<td>editor.exec(&#8216;insertimage&#8217;, &#8216;1.jpg&#8217;, &#8216;title&#8217;, 200, 100, 1, &#8216;right&#8217;);</td>
+</tr>
+<tr class="row-even"><td>createlink</td>
+<td>超级链接</td>
+<td>editor.exec(&#8216;createlink&#8217;, &#8216;1.html&#8217;, &#8216;_blank&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>unlink</td>
+<td>取消超级链接</td>
+<td>editor.exec(&#8216;unlink&#8217;);</td>
+</tr>
+<tr class="row-even"><td>formatblock</td>
+<td>段落</td>
+<td>editor.exec(&#8216;formatblock&#8217;, &#8216;&lt;h1&gt;&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>selectall</td>
+<td>全选</td>
+<td>editor.exec(&#8216;selectall&#8217;);</td>
+</tr>
+<tr class="row-even"><td>justifyleft</td>
+<td>左对齐</td>
+<td>editor.exec(&#8216;justifyleft&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>justifycenter</td>
+<td>居中</td>
+<td>editor.exec(&#8216;justifycenter&#8217;);</td>
+</tr>
+<tr class="row-even"><td>justifyright</td>
+<td>右对齐</td>
+<td>editor.exec(&#8216;justifyright&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>justifyfull</td>
+<td>两端对齐</td>
+<td>editor.exec(&#8216;justifyfull&#8217;);</td>
+</tr>
+<tr class="row-even"><td>insertorderedlist</td>
+<td>编号</td>
+<td>editor.exec(&#8216;insertorderedlist&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>insertunorderedlist</td>
+<td>项目符号</td>
+<td>editor.exec(&#8216;insertunorderedlist&#8217;);</td>
+</tr>
+<tr class="row-even"><td>indent</td>
+<td>增加缩进</td>
+<td>editor.exec(&#8216;indent&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>outdent</td>
+<td>减少缩进</td>
+<td>editor.exec(&#8216;outdent&#8217;);</td>
+</tr>
+<tr class="row-even"><td>subscript</td>
+<td>下标</td>
+<td>editor.exec(&#8216;subscript&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>superscript</td>
+<td>上标</td>
+<td>editor.exec(&#8216;superscript&#8217;);</td>
+</tr>
+<tr class="row-even"><td>cut</td>
+<td>剪切</td>
+<td>editor.exec(&#8216;cut&#8217;);</td>
+</tr>
+<tr class="row-odd"><td>copy</td>
+<td>复制</td>
+<td>editor.exec(&#8216;copy&#8217;);</td>
+</tr>
+<tr class="row-even"><td>paste</td>
+<td>粘贴</td>
+<td>editor.exec(&#8216;paste&#8217;);</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="lang-name">
+<span id="keditor-lang"></span><span id="index-19"></span><h2><a class="toc-backref" href="#id23">lang(name)</a><a class="headerlink" href="#lang-name" title="Permalink to this headline">¶</a></h2>
+<p>取得语言。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string name: language key</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: string</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">str</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">);</span> <span class="c1">// return &#39;表格&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loadplugin-name-fn">
+<span id="keditor-loadplugin"></span><span id="index-20"></span><h2><a class="toc-backref" href="#id24">loadPlugin(name , fn)</a><a class="headerlink" href="#loadplugin-name-fn" title="Permalink to this headline">¶</a></h2>
+<p>动态加载插件。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string name: 插件名</li>
+<li>function fn: 加载成功后执行的回调函数</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">loadPlugin</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;加载成功。&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clicktoolbar-name">
+<span id="keditor-clicktoolbar"></span><span id="index-21"></span><h2><a class="toc-backref" href="#id25">clickToolbar(name)</a><a class="headerlink" href="#clicktoolbar-name" title="Permalink to this headline">¶</a></h2>
+<p>执行绑定在工具栏上的点击事件函数。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string name: item name</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">clickToolbar</span><span class="p">(</span><span class="s1">&#39;bold&#39;</span><span class="p">);</span> <span class="c1">// 对选中文本进行加粗</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clicktoolbar-name-fn">
+<h2><a class="toc-backref" href="#id26">clickToolbar(name [, fn])</a><a class="headerlink" href="#clicktoolbar-name-fn" title="Permalink to this headline">¶</a></h2>
+<p>绑定工具栏的点击事件函数。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>string name: item name</li>
+<li>function fn: 点击工具栏时执行的回调函数。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: fn的return value</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">clickToolbar</span><span class="p">(</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">editor</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;bold&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addbookmark">
+<span id="keditor-addbookmark"></span><span id="index-22"></span><h2><a class="toc-backref" href="#id27">addBookmark()</a><a class="headerlink" href="#addbookmark" title="Permalink to this headline">¶</a></h2>
+<p>将当前数据添加到undo/redo记录里。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">addBookmark</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="undo">
+<span id="keditor-undo"></span><span id="index-23"></span><h2><a class="toc-backref" href="#id28">undo()</a><a class="headerlink" href="#undo" title="Permalink to this headline">¶</a></h2>
+<p>后退。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">undo</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="redo">
+<span id="keditor-redo"></span><span id="index-24"></span><h2><a class="toc-backref" href="#id29">redo()</a><a class="headerlink" href="#redo" title="Permalink to this headline">¶</a></h2>
+<p>撤销后退。(前进)</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">redo</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fullscreen-bool">
+<span id="keditor-fullscreen"></span><span id="index-25"></span><h2><a class="toc-backref" href="#id30">fullscreen([bool])</a><a class="headerlink" href="#fullscreen-bool" title="Permalink to this headline">¶</a></h2>
+<p>切换全屏模式。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Boolean bool: 默认切换(toggle)全屏模式，false时取消全屏，true时变成全屏。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">fullscreen</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="readonly-isreadonly">
+<span id="keditor-readonly"></span><span id="index-26"></span><h2><a class="toc-backref" href="#id31">readonly(isReadonly)</a><a class="headerlink" href="#readonly-isreadonly" title="Permalink to this headline">¶</a></h2>
+<p>设置成只读状态，或取消只读状态。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Boolean isReadonly: false时取消只读状态，true时设置成只读状态。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">readonly</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="createmenu-options">
+<span id="keditor-createmenu"></span><span id="index-27"></span><h2><a class="toc-backref" href="#id32">createMenu(options)</a><a class="headerlink" href="#createmenu-options" title="Permalink to this headline">¶</a></h2>
+<p>显示下拉菜单。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object options: 初始化参数</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KMenu ( <a class="reference internal" href="menu.html"><span class="doc">下拉菜单(Menu) API</span></a> )</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">menu</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">createMenu</span><span class="p">({</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;example1&#39;</span><span class="p">,</span>
+        <span class="nx">width</span> <span class="o">:</span> <span class="mi">150</span>
+<span class="p">});</span>
+<span class="nx">menu</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;红色&#39;</span><span class="p">,</span>
+        <span class="nx">click</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">menu</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;白色&#39;</span><span class="p">,</span>
+        <span class="nx">click</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hidemenu">
+<span id="keditor-hidemenu"></span><span id="index-28"></span><h2><a class="toc-backref" href="#id33">hideMenu()</a><a class="headerlink" href="#hidemenu" title="Permalink to this headline">¶</a></h2>
+<p>隐藏下拉菜单。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">hideMenu</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addcontextmenu-item">
+<span id="keditor-addcontextmenu"></span><span id="index-29"></span><h2><a class="toc-backref" href="#id34">addContextmenu(item)</a><a class="headerlink" href="#addcontextmenu-item" title="Permalink to this headline">¶</a></h2>
+<p>添加自定义右键菜单。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object item: 请参考 KMenu.addItem(item)的item参数</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KEditor</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">addContextmenu</span><span class="p">({</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="nx">click</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;clicked&#39;</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">cond</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">width</span> <span class="o">:</span> <span class="mi">150</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="c1">// 插入分割线</span>
+<span class="nx">editor</span><span class="p">.</span><span class="nx">addContextmenu</span><span class="p">({</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;-&#39;</span> <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hidecontextmenu">
+<span id="keditor-hidecontextmenu"></span><span id="index-30"></span><h2><a class="toc-backref" href="#id35">hideContextmenu()</a><a class="headerlink" href="#hidecontextmenu" title="Permalink to this headline">¶</a></h2>
+<p>隐藏自定义右键菜单。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KEditor</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">hideContextmenu</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="createdialog-options">
+<span id="keditor-createdialog"></span><span id="index-31"></span><h2><a class="toc-backref" href="#id36">createDialog(options)</a><a class="headerlink" href="#createdialog-options" title="Permalink to this headline">¶</a></h2>
+<p>显示弹出窗口(dialog)。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>object options: 初始化参数</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KDialog ( <a class="reference internal" href="dialog.html"><span class="doc">弹出窗口(Dialog) API</span></a> )</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">createDialog</span><span class="p">({</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span>
+        <span class="nx">width</span> <span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;about&#39;</span><span class="p">),</span>
+        <span class="nx">body</span> <span class="o">:</span> <span class="s1">&#39;&lt;div style=&quot;margin:20px;&quot;&gt;Hello&lt;/div&gt;&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hidedialog">
+<span id="keditor-hidedialog"></span><span id="index-32"></span><h2><a class="toc-backref" href="#id37">hideDialog()</a><a class="headerlink" href="#hidedialog" title="Permalink to this headline">¶</a></h2>
+<p>隐藏弹出窗口(dialog)。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KMenu</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">editor</span><span class="p">.</span><span class="nx">hideDialog</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="upgrade.html" title="3.x升级到4.x版本"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="uploadbutton.html" title="上传按钮(UplaodButton) API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/editor.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>

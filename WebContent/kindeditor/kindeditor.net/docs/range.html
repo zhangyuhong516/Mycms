@@ -1,0 +1,703 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/range.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="Command API" href="cmd.html" />
+    <link rel="prev" title="Node API" href="node.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cmd.html" title="Command API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="node.html" title="Node API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="range-api">
+<h1><a class="toc-backref" href="#id1">Range API</a><a class="headerlink" href="#range-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#range-api" id="id1">Range API</a><ul>
+<li><a class="reference internal" href="#k-range-mixed" id="id2">K.range(mixed)</a></li>
+<li><a class="reference internal" href="#k-start-to-start" id="id3">K.START_TO_START</a></li>
+<li><a class="reference internal" href="#k-start-to-end" id="id4">K.START_TO_END</a></li>
+<li><a class="reference internal" href="#k-end-to-end" id="id5">K.END_TO_END</a></li>
+<li><a class="reference internal" href="#k-end-to-start" id="id6">K.END_TO_START</a></li>
+<li><a class="reference internal" href="#startcontainer" id="id7">startContainer</a></li>
+<li><a class="reference internal" href="#startoffset" id="id8">startOffset</a></li>
+<li><a class="reference internal" href="#endcontainer" id="id9">endContainer</a></li>
+<li><a class="reference internal" href="#endoffset" id="id10">endOffset</a></li>
+<li><a class="reference internal" href="#collapsed" id="id11">collapsed</a></li>
+<li><a class="reference internal" href="#commonancestor" id="id12">commonAncestor()</a></li>
+<li><a class="reference internal" href="#setstart-node-offset" id="id13">setStart(node , offset)</a></li>
+<li><a class="reference internal" href="#setend-node-offset" id="id14">setEnd(node , offset)</a></li>
+<li><a class="reference internal" href="#setstartbefore-node" id="id15">setStartBefore(node)</a></li>
+<li><a class="reference internal" href="#setstartafter-node" id="id16">setStartAfter(node)</a></li>
+<li><a class="reference internal" href="#setendbefore-node" id="id17">setEndBefore(node)</a></li>
+<li><a class="reference internal" href="#setendafter-node" id="id18">setEndAfter(node)</a></li>
+<li><a class="reference internal" href="#selectnode-node" id="id19">selectNode(node)</a></li>
+<li><a class="reference internal" href="#selectnodecontents-node" id="id20">selectNodeContents(node)</a></li>
+<li><a class="reference internal" href="#collapse-tostart" id="id21">collapse(toStart)</a></li>
+<li><a class="reference internal" href="#compareboundarypoints-how-range" id="id22">compareBoundaryPoints(how , range)</a></li>
+<li><a class="reference internal" href="#clonerange" id="id23">cloneRange()</a></li>
+<li><a class="reference internal" href="#tostring" id="id24">toString()</a></li>
+<li><a class="reference internal" href="#clonecontents" id="id25">cloneContents()</a></li>
+<li><a class="reference internal" href="#deletecontents" id="id26">deleteContents()</a></li>
+<li><a class="reference internal" href="#extractcontents" id="id27">extractContents()</a></li>
+<li><a class="reference internal" href="#insertnode-node" id="id28">insertNode(node)</a></li>
+<li><a class="reference internal" href="#surroundcontents-node" id="id29">surroundContents(node)</a></li>
+<li><a class="reference internal" href="#iscontrol" id="id30">isControl()</a></li>
+<li><a class="reference internal" href="#get-hascontrolrange" id="id31">get([hasControlRange])</a></li>
+<li><a class="reference internal" href="#html" id="id32">html()</a></li>
+<li><a class="reference internal" href="#down" id="id33">down()</a></li>
+<li><a class="reference internal" href="#up" id="id34">up()</a></li>
+<li><a class="reference internal" href="#enlarge" id="id35">enlarge()</a></li>
+<li><a class="reference internal" href="#shrink" id="id36">shrink()</a></li>
+<li><a class="reference internal" href="#createbookmark-serialize" id="id37">createBookmark([serialize])</a></li>
+<li><a class="reference internal" href="#movetobookmark-bookmark" id="id38">moveToBookmark(bookmark)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="k-range-mixed">
+<span id="k-range"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id2">K.range(mixed)</a><a class="headerlink" href="#k-range-mixed" title="Permalink to this headline">¶</a></h2>
+<p>创建或选取KRange对象，KRange是原生Range的封装，包含大部分W3C Range接口，此外还有包含KRange和原生Range之间的转换功能。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>document|range mixed: document或原生range</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange对象</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">originalRange</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DOM Level 2 Range Reference: <a class="reference external" href="http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html">http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html</a></p>
+</div>
+</div>
+<div class="section" id="k-start-to-start">
+<span id="start-to-start"></span><span id="index-1"></span><h2><a class="toc-backref" href="#id3">K.START_TO_START</a><a class="headerlink" href="#k-start-to-start" title="Permalink to this headline">¶</a></h2>
+<p>调用 <a class="reference internal" href="#krange-compareboundarypoints"><span class="std std-ref">compareBoundaryPoints(how , range)</span></a> 时使用。</p>
+</div>
+<div class="section" id="k-start-to-end">
+<span id="start-to-end"></span><span id="index-2"></span><h2><a class="toc-backref" href="#id4">K.START_TO_END</a><a class="headerlink" href="#k-start-to-end" title="Permalink to this headline">¶</a></h2>
+<p>调用 <a class="reference internal" href="#krange-compareboundarypoints"><span class="std std-ref">compareBoundaryPoints(how , range)</span></a> 时使用。</p>
+</div>
+<div class="section" id="k-end-to-end">
+<span id="end-to-end"></span><span id="index-3"></span><h2><a class="toc-backref" href="#id5">K.END_TO_END</a><a class="headerlink" href="#k-end-to-end" title="Permalink to this headline">¶</a></h2>
+<p>调用 <a class="reference internal" href="#krange-compareboundarypoints"><span class="std std-ref">compareBoundaryPoints(how , range)</span></a> 时使用。</p>
+</div>
+<div class="section" id="k-end-to-start">
+<span id="end-to-start"></span><span id="index-4"></span><h2><a class="toc-backref" href="#id6">K.END_TO_START</a><a class="headerlink" href="#k-end-to-start" title="Permalink to this headline">¶</a></h2>
+<p>调用 <a class="reference internal" href="#krange-compareboundarypoints"><span class="std std-ref">compareBoundaryPoints(how , range)</span></a> 时使用。</p>
+</div>
+<div class="section" id="startcontainer">
+<span id="krange-startcontainer"></span><span id="index-5"></span><h2><a class="toc-backref" href="#id7">startContainer</a><a class="headerlink" href="#startcontainer" title="Permalink to this headline">¶</a></h2>
+<p>range的开始节点。</p>
+</div>
+<div class="section" id="startoffset">
+<span id="krange-startoffset"></span><span id="index-6"></span><h2><a class="toc-backref" href="#id8">startOffset</a><a class="headerlink" href="#startoffset" title="Permalink to this headline">¶</a></h2>
+<p>range的开始节点位置。</p>
+</div>
+<div class="section" id="endcontainer">
+<span id="krange-endcontainer"></span><span id="index-7"></span><h2><a class="toc-backref" href="#id9">endContainer</a><a class="headerlink" href="#endcontainer" title="Permalink to this headline">¶</a></h2>
+<p>range的结束节点。</p>
+</div>
+<div class="section" id="endoffset">
+<span id="krange-endoffset"></span><span id="index-8"></span><h2><a class="toc-backref" href="#id10">endOffset</a><a class="headerlink" href="#endoffset" title="Permalink to this headline">¶</a></h2>
+<p>range的结束节点的位置。</p>
+</div>
+<div class="section" id="collapsed">
+<span id="krange-collapsed"></span><span id="index-9"></span><h2><a class="toc-backref" href="#id11">collapsed</a><a class="headerlink" href="#collapsed" title="Permalink to this headline">¶</a></h2>
+<p>range的折叠状态，当range处于折叠状态时true，否则false。。</p>
+</div>
+<div class="section" id="commonancestor">
+<span id="krange-commonancestor"></span><span id="index-10"></span><h2><a class="toc-backref" href="#id12">commonAncestor()</a><a class="headerlink" href="#commonancestor" title="Permalink to this headline">¶</a></h2>
+<p>取得KRange的共同祖先。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: Element</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">commonAncestor</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setstart-node-offset">
+<span id="krange-setstart"></span><span id="index-11"></span><h2><a class="toc-backref" href="#id13">setStart(node , offset)</a><a class="headerlink" href="#setstart-node-offset" title="Permalink to this headline">¶</a></h2>
+<p>设置KRange的开始节点和位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+<li>Int offset: 位置</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStart</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setend-node-offset">
+<span id="krange-setend"></span><span id="index-12"></span><h2><a class="toc-backref" href="#id14">setEnd(node , offset)</a><a class="headerlink" href="#setend-node-offset" title="Permalink to this headline">¶</a></h2>
+<p>设置KRange的结束节点和位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+<li>Int offset: 位置</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setEnd</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setstartbefore-node">
+<span id="krange-setstartbefore"></span><span id="index-13"></span><h2><a class="toc-backref" href="#id15">setStartBefore(node)</a><a class="headerlink" href="#setstartbefore-node" title="Permalink to this headline">¶</a></h2>
+<p>将Node的开始位置设置成Range的开始位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStartBefore</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setstartafter-node">
+<span id="krange-setstartafter"></span><span id="index-14"></span><h2><a class="toc-backref" href="#id16">setStartAfter(node)</a><a class="headerlink" href="#setstartafter-node" title="Permalink to this headline">¶</a></h2>
+<p>将Node的结束位置设置成Range的开始位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStartAfter</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setendbefore-node">
+<span id="krange-setendbefore"></span><span id="index-15"></span><h2><a class="toc-backref" href="#id17">setEndBefore(node)</a><a class="headerlink" href="#setendbefore-node" title="Permalink to this headline">¶</a></h2>
+<p>将Node的开始位置设置成Range的结束位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setEndBefore</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setendafter-node">
+<span id="krange-setendafter"></span><span id="index-16"></span><h2><a class="toc-backref" href="#id18">setEndAfter(node)</a><a class="headerlink" href="#setendafter-node" title="Permalink to this headline">¶</a></h2>
+<p>将Node的结束位置设置成Range的结束位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setEndAfter</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selectnode-node">
+<span id="krange-selectnode"></span><span id="index-17"></span><h2><a class="toc-backref" href="#id19">selectNode(node)</a><a class="headerlink" href="#selectnode-node" title="Permalink to this headline">¶</a></h2>
+<p>将Node的开始位置和结束位置分别设置成Range的开始位置和结束位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNode</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selectnodecontents-node">
+<span id="krange-selectnodecontents"></span><span id="index-18"></span><h2><a class="toc-backref" href="#id20">selectNodeContents(node)</a><a class="headerlink" href="#selectnodecontents-node" title="Permalink to this headline">¶</a></h2>
+<p>将Node的子节点的开始位置和结束位置分别设置成Range的开始位置和结束位置。对于文本节点和无结束符的元素，相当于使用selectNode。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collapse-tostart">
+<span id="krange-collapse"></span><span id="index-19"></span><h2><a class="toc-backref" href="#id21">collapse(toStart)</a><a class="headerlink" href="#collapse-tostart" title="Permalink to this headline">¶</a></h2>
+<p>折叠KRange，当toStart为true时向前折叠，false时向后折叠。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Boolean toStart: 折叠方向</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">collapse</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compareboundarypoints-how-range">
+<span id="krange-compareboundarypoints"></span><span id="index-20"></span><h2><a class="toc-backref" href="#id22">compareBoundaryPoints(how , range)</a><a class="headerlink" href="#compareboundarypoints-how-range" title="Permalink to this headline">¶</a></h2>
+<p>根据how参数比较2个range的边界。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Int how: 位置信息，可设置K.START_TO_START、K.START_TO_END、K.END_TO_END、K.END_TO_START。</li>
+<li>Range range: 目标Range</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: 当this range在目标range的左侧时返回-1，在目标range的右侧时返回1，相同时返回0。</p>
+</li>
+</ul>
+<p>how参数的方向规则：</p>
+<ul class="simple">
+<li>K.START_TO_START：比较目标range的开始位置和this range的开始位置。</li>
+<li>K.START_TO_END：比较目标range的开始位置和this range的结束位置。</li>
+<li>K.END_TO_END：比较目标range的结束位置和this range的结束位置。</li>
+<li>K.END_TO_START：比较目标range的结束位置和this range的开始位置。</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range1</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range1</span><span class="p">.</span><span class="nx">selectNode</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">range2</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range2</span><span class="p">.</span><span class="nx">selectNode</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id p&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">cmp</span> <span class="o">=</span> <span class="nx">range1</span><span class="p">.</span><span class="nx">compareBoundaryPoints</span><span class="p">(</span><span class="nx">K</span><span class="p">.</span><span class="nx">START_TO_START</span><span class="p">,</span> <span class="nx">range2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clonerange">
+<span id="krange-clonerange"></span><span id="index-21"></span><h2><a class="toc-backref" href="#id23">cloneRange()</a><a class="headerlink" href="#clonerange" title="Permalink to this headline">¶</a></h2>
+<p>复制KRange。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KRange</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">newRange</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">cloneRange</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tostring">
+<span id="krange-tostring"></span><span id="index-22"></span><h2><a class="toc-backref" href="#id24">toString()</a><a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h2>
+<p>返回KRange的文本内容。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: String</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clonecontents">
+<span id="krange-clonecontents"></span><span id="index-23"></span><h2><a class="toc-backref" href="#id25">cloneContents()</a><a class="headerlink" href="#clonecontents" title="Permalink to this headline">¶</a></h2>
+<p>复制并返回KRange的内容。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: documentFragment</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">fragment</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">cloneContents</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deletecontents">
+<span id="krange-deletecontents"></span><span id="index-24"></span><h2><a class="toc-backref" href="#id26">deleteContents()</a><a class="headerlink" href="#deletecontents" title="Permalink to this headline">¶</a></h2>
+<p>删除KRange的内容。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KRange</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">deleteContents</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extractcontents">
+<span id="krange-extractcontents"></span><span id="index-25"></span><h2><a class="toc-backref" href="#id27">extractContents()</a><a class="headerlink" href="#extractcontents" title="Permalink to this headline">¶</a></h2>
+<p>删除并返回KRange的内容。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: documentFragment</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;div#id&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">fragment</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">extractContents</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="insertnode-node">
+<span id="krange-insertnode"></span><span id="index-26"></span><h2><a class="toc-backref" href="#id28">insertNode(node)</a><a class="headerlink" href="#insertnode-node" title="Permalink to this headline">¶</a></h2>
+<p>将指定Node插入到KRange的开始位置。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Node node: 任意Node或documentFragment</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">insertNode</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id2&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="surroundcontents-node">
+<span id="krange-surroundcontents"></span><span id="index-27"></span><h2><a class="toc-backref" href="#id29">surroundContents(node)</a><a class="headerlink" href="#surroundcontents-node" title="Permalink to this headline">¶</a></h2>
+<p>用指定Node围住KRange的内容。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Element node: 任意节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">surroundContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id2&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iscontrol">
+<span id="krange-iscontrol"></span><span id="index-28"></span><h2><a class="toc-backref" href="#id30">isControl()</a><a class="headerlink" href="#iscontrol" title="Permalink to this headline">¶</a></h2>
+<p>判断当前KRange是否可选择的Contral Range。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: Boolean</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">bool</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">isControl</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-hascontrolrange">
+<span id="krange-get"></span><span id="index-29"></span><h2><a class="toc-backref" href="#id31">get([hasControlRange])</a><a class="headerlink" href="#get-hascontrolrange" title="Permalink to this headline">¶</a></h2>
+<p>将KRange转换成原生Range并返回。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Boolean hasControlRange: 是否包含Contral Range</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: Range</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">originalRange</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="html">
+<span id="krange-html"></span><span id="index-30"></span><h2><a class="toc-backref" href="#id32">html()</a><a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
+<p>返回KRange内容的HTML。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: HTML string</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">K</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">selectNodeContents</span><span class="p">(</span><span class="nx">K</span><span class="p">(</span><span class="s1">&#39;#id1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="down">
+<span id="krange-down"></span><span id="index-31"></span><h2><a class="toc-backref" href="#id33">down()</a><a class="headerlink" href="#down" title="Permalink to this headline">¶</a></h2>
+<p>降低range的位置。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KRange</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// &lt;p&gt;&lt;strong&gt;&lt;span&gt;123&lt;/span&gt;abc&lt;/strong&gt;def&lt;/p&gt;</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStart</span><span class="p">(</span><span class="nx">strong</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">down</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">range</span><span class="p">.</span><span class="nx">startContainer</span><span class="p">,</span> <span class="nx">range</span><span class="p">.</span><span class="nx">startOffset</span><span class="p">);</span> <span class="c1">// print &quot;abc&quot;, 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="up">
+<span id="krange-up"></span><span id="index-32"></span><h2><a class="toc-backref" href="#id34">up()</a><a class="headerlink" href="#up" title="Permalink to this headline">¶</a></h2>
+<p>提高range的位置。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KRange</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// &lt;p&gt;&lt;strong&gt;&lt;span&gt;123&lt;/span&gt;abc&lt;/strong&gt;def&lt;/p&gt;</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStart</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">up</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">range</span><span class="p">.</span><span class="nx">startContainer</span><span class="p">,</span> <span class="nx">range</span><span class="p">.</span><span class="nx">startOffset</span><span class="p">);</span> <span class="c1">// print strong, 1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enlarge">
+<span id="krange-enlarge"></span><span id="index-33"></span><h2><a class="toc-backref" href="#id35">enlarge()</a><a class="headerlink" href="#enlarge" title="Permalink to this headline">¶</a></h2>
+<p>扩大边界。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KRange</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// &lt;p&gt;&lt;strong&gt;&lt;span&gt;123&lt;/span&gt;abc&lt;/strong&gt;def&lt;/p&gt;</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStart</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setEnd</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">enlarge</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">range</span><span class="p">.</span><span class="nx">startContainer</span><span class="p">,</span> <span class="nx">range</span><span class="p">.</span><span class="nx">startOffset</span><span class="p">);</span> <span class="c1">// print p, 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">range</span><span class="p">.</span><span class="nx">endContainer</span><span class="p">,</span> <span class="nx">range</span><span class="p">.</span><span class="nx">endOffset</span><span class="p">);</span> <span class="c1">// print p, 1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="shrink">
+<span id="krange-shrink"></span><span id="index-34"></span><h2><a class="toc-backref" href="#id36">shrink()</a><a class="headerlink" href="#shrink" title="Permalink to this headline">¶</a></h2>
+<p>缩小边界。</p>
+<ul class="simple">
+<li>参数: 无</li>
+<li>返回: KRange</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// &lt;p&gt;&lt;strong&gt;&lt;span&gt;123&lt;/span&gt;abc&lt;/strong&gt;&lt;/p&gt;</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setStart</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">setEnd</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">shrink</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">range</span><span class="p">.</span><span class="nx">startContainer</span><span class="p">,</span> <span class="nx">range</span><span class="p">.</span><span class="nx">startOffset</span><span class="p">);</span> <span class="c1">// print &quot;123&quot;, 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">range</span><span class="p">.</span><span class="nx">endContainer</span><span class="p">,</span> <span class="nx">range</span><span class="p">.</span><span class="nx">endOffset</span><span class="p">);</span> <span class="c1">// print &quot;abc&quot;, 3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="createbookmark-serialize">
+<span id="krange-createbookmark"></span><span id="index-35"></span><h2><a class="toc-backref" href="#id37">createBookmark([serialize])</a><a class="headerlink" href="#createbookmark-serialize" title="Permalink to this headline">¶</a></h2>
+<p>创建bookmark。(插入临时节点标记位置)</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Boolean serialize: bookmark类型，默认值为false，true时bookmark包含临时节点的ID，false时bookmark包含临时节点的Element。</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: bookmark</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">bookmark</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">createBookmark</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bookmark</span><span class="p">);</span> <span class="c1">// print {start: startNode, end: endNode}</span>
+
+<span class="nx">bookmark</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">createBookmark</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bookmark</span><span class="p">);</span> <span class="c1">// print {start: &#39;start_node_id&#39;, end: &#39;end_node_id&#39;}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="movetobookmark-bookmark">
+<span id="krange-movetobookmark"></span><span id="index-36"></span><h2><a class="toc-backref" href="#id38">moveToBookmark(bookmark)</a><a class="headerlink" href="#movetobookmark-bookmark" title="Permalink to this headline">¶</a></h2>
+<p>根据bookmark重新设置range。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>参数:</dt>
+<dd><ul class="first last simple">
+<li>Object bookmark: 通过 <a class="reference internal" href="#krange-createbookmark"><span class="std std-ref">createBookmark([serialize])</span></a> 得到的bookmark</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回: KRange</p>
+</li>
+</ul>
+<p>示例:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">bookmark</span> <span class="o">=</span> <span class="nx">range</span><span class="p">.</span><span class="nx">createBookmark</span><span class="p">();</span>
+<span class="c1">// 在这里执行一些改变DOM的处理</span>
+<span class="c1">// ...</span>
+<span class="nx">range</span><span class="p">.</span><span class="nx">moveToBookmark</span><span class="p">(</span><span class="nx">bookmark</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cmd.html" title="Command API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="node.html" title="Node API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/range.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

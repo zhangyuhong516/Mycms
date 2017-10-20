@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/upload.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="常见问题" href="qna.html" />
+    <link rel="prev" title="添加自定义插件" href="plugin.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="qna.html" title="常见问题"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="plugin.html" title="添加自定义插件"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>上传文件<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>KindEditor默认提供ASP、ASP.NET、PHP、JSP上传程序，这些程序是演示程序，建议不要直接在实际项目中使用。
+如果您确定直接使用本程序，使用之前请仔细确认相关安全设置。</p>
+<div class="section" id="id2">
+<h2>选择程序语言<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// ASP</span>
+<span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#textarea_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">uploadJson</span> <span class="o">:</span> <span class="s1">&#39;../asp/upload_json.asp&#39;</span><span class="p">,</span>
+                <span class="nx">fileManagerJson</span> <span class="o">:</span> <span class="s1">&#39;../asp/file_manager_json.asp&#39;</span><span class="p">,</span>
+                <span class="nx">allowFileManager</span> <span class="o">:</span> <span class="kc">true</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+<span class="c1">// ASP.NET</span>
+<span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#textarea_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">uploadJson</span> <span class="o">:</span> <span class="s1">&#39;../asp.net/upload_json.ashx&#39;</span><span class="p">,</span>
+                <span class="nx">fileManagerJson</span> <span class="o">:</span> <span class="s1">&#39;../asp.net/file_manager_json.ashx&#39;</span><span class="p">,</span>
+                <span class="nx">allowFileManager</span> <span class="o">:</span> <span class="kc">true</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+<span class="c1">// JSP</span>
+<span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#textarea_id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">uploadJson</span> <span class="o">:</span> <span class="s1">&#39;../jsp/upload_json.jsp&#39;</span><span class="p">,</span>
+                <span class="nx">fileManagerJson</span> <span class="o">:</span> <span class="s1">&#39;../jsp/file_manager_json.jsp&#39;</span><span class="p">,</span>
+                <span class="nx">allowFileManager</span> <span class="o">:</span> <span class="kc">true</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">具体使用方法请参见各语言(asp、asp.net、php、jsp)目录下的demo.xxx文件。</p>
+</div>
+</div>
+<div class="section" id="post">
+<h2>POST参数<a class="headerlink" href="#post" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>imgFile: 文件form名称</li>
+<li>dir: 上传类型，分别为image、flash、media、file</li>
+</ul>
+</div>
+<div class="section" id="json">
+<h2>返回格式(JSON)<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">//成功时</span>
+<span class="p">{</span>
+        <span class="s2">&quot;error&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://www.example.com/path/to/file.ext&quot;</span>
+<span class="p">}</span>
+<span class="c1">//失败时</span>
+<span class="p">{</span>
+        <span class="s2">&quot;error&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;message&quot;</span> <span class="o">:</span> <span class="s2">&quot;错误信息&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="qna.html" title="常见问题"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="plugin.html" title="添加自定义插件"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/upload.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>

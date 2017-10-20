@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/ke4/examples/multi-language.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:07 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>Multi Language Examples</title>
+		<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="../themes/default/default.css" />
+		<script charset="utf-8" src="../kindeditor-min.js"></script>
+		<script>
+			var editor;
+			KindEditor.ready(function(K) {
+				K('select[name=lang]').change(function() {
+					if (editor) {
+						editor.remove();
+						editor = null;
+					}
+					editor = K.create('textarea[name="content"]', {
+						langType : this.value
+					});
+				});
+				K('select[name=lang]').change();
+			});
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-7116729301372758";
+		/* 更多演示（728x90） */
+		google_ad_slot = "5052271949";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+		</script>
+		<h3>Multi Language</h3>
+		<form>
+			<p>
+				<select name="lang">
+					<option value="en">English</option>
+					<option value="zh-CN">简体中文</option>
+					<option value="zh-TW">繁體中文</option>
+					<option value="ko">Korean</option>
+					<option value="ar">Arabic</option>
+				</select>
+			</p>
+			<textarea name="content" style="width:800px;height:200px;"></textarea>
+		</form>
+	</body>
+
+<!-- Mirrored from kindeditor.net/ke4/examples/multi-language.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:07 GMT -->
+</html>

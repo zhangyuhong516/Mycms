@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+	
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=plugin by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+<head>
+		<meta charset="utf-8" />
+		<title>文档 - KindEditor - 在线HTML编辑器</title>
+		<meta name="description" content="编辑器调用方法、编辑器初始化参数、添加自定义插件、API文档、常见问题" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="css/mainfd47.css?t=20140215.css" rel="stylesheet" />
+		<link href="prettify/prettifye51e.css?t=20110528.css" rel="stylesheet" />
+		<link href="ke4/themes/default/default79ed.css?t=20160331.css" rel="stylesheet" />
+		<script src="ke4/kindeditor-all-min53a2.js?t=20160331.js"></script>
+		<script src="prettify/prettify8b79.js?t=20110528.js"></script>
+		<script>
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-739852-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="header_top">
+		<a href="demo.html" id="logo" title="返回首页"><img src="images/logo.png" width="200" height="34" alt="KindEditor" /></a>
+		<ul id="nav">
+			<li><a href="about.html">关于</a></li>
+			<li><a href="demo.html">演示</a></li>
+			<li><a href="down.html">下载</a></li>
+			<li class="active"><a href="doc.html">文档</a></li>
+			<li><a href="case.html">成功案例</a></li>
+			<li><a href="http://kindeditor.org/">English</a></li>
+		</ul>
+	</div>
+
+
+
+
+<div id="header_bottom">
+	<div id="slider_container">
+		<h1 class="yahei h_fix">文档 <span>Documentation</span></h1>
+	</div>
+</div>
+</div>
+
+<div id="body">
+	<div id="body_top"></div>
+	<div id="body_middle">
+		<ul id="breadcrumb">
+			<li class="t">当前位置: </li>
+			<li><a href="demo.html">首页</a> &nbsp;&gt;</li>
+			<li>文档</li>
+		</ul>
+
+		<div class="doc-navi">
+			<h1 class="yahei h_fix">文档 <span>Documentation</span></h1> 
+			<ul class="list">
+				<li><a href="doc3.html">编辑器调用方法</a></li>
+				<li><a href="doc39076.html?cmd=config">编辑器初始化参数</a></li>
+				<li><a href="doc3ae65.html?cmd=plugin">添加自定义插件</a></li>
+				<li><a href="doc334d3.html?cmd=api">API文档</a></li>
+				<li><a href="doc3a425.html?cmd=qna">常见问题</a></li>
+			</ul>
+		</div>
+
+
+
+    <div class="myblock">
+      <div class="header">一、添加"你好"插件</div>
+
+      <ol>
+        <li>
+          定义KE.lang['hello'] = "你好"。
+          <pre class="prettyprint">
+KE.lang['hello'] = &quot;您好&quot;;
+          </pre>
+        </li>
+        <li>
+          定义KE.plugin['hello']，所有逻辑都在这个对象里，点击图标时默认执行click方法。
+          <pre class="prettyprint">
+KE.plugin['hello'] = {
+    click : function(id) {
+        alert(&quot;您好&quot;);
+    }
+};
+          </pre>
+        </li>
+        <li>
+          页面里添加图标定义CSS。
+          <pre class="prettyprint">
+.ke-icon-hello {
+      background-image: url(./skins/default.gif);
+      background-position: 0px -672px;
+      width: 16px;
+      height: 16px;
+}
+          </pre>
+        </li>
+        <li>
+          最后调用编辑器时items数组里添加hello。
+          <pre class="prettyprint">
+KE.show({
+    id : 'content1',
+    items : ['hello']
+});
+          </pre>
+          演示地址：<a href="ke/examples/demo-17.html" target="_blank">在新窗口打开</a>
+        </li>
+      </ol>
+    </div>
+
+    <div class="myblock">
+      <div class="header">二、添加插入远程图片的插件</div>
+
+      <ol>
+        <li>
+          定义KE.lang['remote_image'] = "插入远程图片"。
+          <pre class="prettyprint">
+KE.lang['remote_image'] = &quot;插入远程图片&quot;;
+          </pre>
+        </li>
+        <li>
+          定义KE.plugin['remote_image']。
+          <pre class="prettyprint">
+KE.plugin['remote_image'] = {
+    click : function(id) {
+        KE.util.selection(id);
+        var dialog = new KE.dialog({
+            id : id,
+            cmd : 'remote_image',
+            width : 310,
+            height : 90,
+            title : KE.lang['image'],
+            yesButton : KE.lang['yes'],
+            noButton : KE.lang['no']
+        });
+        dialog.show();
+    },
+    check : function(id) {
+        var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+        var url = KE.$('url', dialogDoc).value;
+        var title = KE.$('imgTitle', dialogDoc).value;
+        var width = KE.$('imgWidth', dialogDoc).value;
+        var height = KE.$('imgHeight', dialogDoc).value;
+        var border = KE.$('imgBorder', dialogDoc).value;
+        if (url.match(/\.(jpg|jpeg|gif|bmp|png)$/i) == null) {
+            alert(KE.lang['invalidImg']);
+            window.focus();
+            KE.g[id].yesButton.focus();
+            return false;
+        }
+        if (width.match(/^\d+$/) == null) {
+            alert(KE.lang['invalidWidth']);
+            window.focus();
+            KE.g[id].yesButton.focus();
+            return false;
+        }
+        if (height.match(/^\d+$/) == null) {
+            alert(KE.lang['invalidHeight']);
+            window.focus();
+            KE.g[id].yesButton.focus();
+            return false;
+        }
+        if (border.match(/^\d+$/) == null) {
+            alert(KE.lang['invalidBorder']);
+            window.focus();
+            KE.g[id].yesButton.focus();
+            return false;
+        }
+        return true;
+    },
+    exec : function(id) {
+        KE.util.select(id);
+        var iframeDoc = KE.g[id].iframeDoc;
+        var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+        if (!this.check(id)) return false;
+        var url = KE.$('url', dialogDoc).value;
+        var title = KE.$('imgTitle', dialogDoc).value;
+        var width = KE.$('imgWidth', dialogDoc).value;
+        var height = KE.$('imgHeight', dialogDoc).value;
+        var border = KE.$('imgBorder', dialogDoc).value;
+        this.insert(id, url, title, width, height, border);
+    },
+    insert : function(id, url, title, width, height, border) {
+        var html = '&lt;img src="' + url + '" ';
+        if (width > 0) html += 'width="' + width + '" ';
+        if (height > 0) html += 'height="' + height + '" ';
+        if (title) html += 'title="' + title + '" ';
+        html += 'alt="' + title + '" ';
+        html += 'border="' + border + '" /&gt;';
+        KE.util.insertHtml(id, html);
+        KE.layout.hide(id);
+        KE.util.focus(id);
+    }
+};
+          </pre>
+        </li>
+        <li>
+          页面里添加图标定义CSS。
+          <pre class="prettyprint">
+.ke-icon-remote_image {
+      background-image: url(./skins/default.gif);
+      background-position: 0px -496px;
+      width: 16px;
+      height: 16px;
+}
+          </pre>
+        </li>
+        <li>
+          最后调用编辑器时items数组里添加remote_image。
+          <pre class="prettyprint">
+KE.show({
+    id : 'content1',
+    items : ['remote_image']
+});
+          </pre>
+          演示地址：<a href="ke/examples/demo-18.html" target="_blank">在新窗口打开</a>
+        </li>
+      </ol>
+    </div>
+
+		<div class="clear"></div>
+
+	</div>
+	<div id="body_bottom"></div>
+	</div>
+
+<script type="text/javascript">
+prettyPrint();
+</script>
+
+<style>
+	#cnzz_stat_icon_253716 {
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		vertical-align: top;
+	}
+</style>
+<div id="footer">
+	<div id="copy">
+		<div>Copyright &copy; kindeditor.net &nbsp;
+			<a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备13006566号-2</a> &nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_253716'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D253716' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<!-- Mirrored from kindeditor.net/doc3.php?cmd=plugin by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:05 GMT -->
+</html>
+
+
+
+
+

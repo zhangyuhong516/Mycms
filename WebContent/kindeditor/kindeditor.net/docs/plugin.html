@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  
+<!-- Mirrored from kindeditor.net/docs/plugin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+<title>KindEditor 4.x Documentation</title>
+    
+    <link rel="stylesheet" href="_static/classy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.x',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KindEditor 4.x documentation" href="index.html" />
+    <link rel="next" title="上传文件" href="upload.html" />
+    <link rel="prev" title="更改编辑器外观" href="theme.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="upload.html" title="上传文件"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="theme.html" title="更改编辑器外观"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>添加自定义插件<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hello">
+<h2>1. 添加&#8221;hello&#8221;插件<a class="headerlink" href="#hello" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>添加plugins/hello/hello.js文件。</li>
+</ol>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">KindEditor</span><span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">editor</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+        <span class="c1">// 点击图标时执行</span>
+        <span class="nx">editor</span><span class="p">.</span><span class="nx">clickToolbar</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">editor</span><span class="p">.</span><span class="nx">insertHtml</span><span class="p">(</span><span class="s1">&#39;你好&#39;</span><span class="p">);</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>定义语言，在页面的&lt;script&gt;标签里添加以下脚本。</li>
+</ol>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">KindEditor</span><span class="p">.</span><span class="nx">lang</span><span class="p">({</span>
+        <span class="nx">hello</span> <span class="o">:</span> <span class="s1">&#39;你好&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>定义工具栏图标的CSS，在页面的&lt;style&gt;标签里添加以下CSS。</li>
+</ol>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nc">.ke-icon-hello</span> <span class="p">{</span>
+        <span class="nb">background-image</span><span class="o">:</span> <span class="sx">url(../skins/default/default.gif)</span><span class="p">;</span>
+        <span class="nb">background-position</span><span class="o">:</span> <span class="m">0px</span> <span class="m">-672px</span><span class="p">;</span>
+        <span class="nb">width</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+        <span class="nb">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>最后调用编辑器时items数组里添加hello。</li>
+</ol>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">items</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>完整代码：</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+                <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+                        <span class="nc">.ke-icon-hello</span> <span class="p">{</span>
+                                <span class="nb">background-image</span><span class="o">:</span> <span class="sx">url(../skins/default/default.gif)</span><span class="p">;</span>
+                                <span class="nb">background-position</span><span class="o">:</span> <span class="m">0px</span> <span class="m">-672px</span><span class="p">;</span>
+                                <span class="nb">width</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+                                <span class="nb">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+                        <span class="p">}</span>
+                <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../themes/default/default.css&quot;</span> <span class="p">/&gt;</span>
+                <span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../kindeditor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">script</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../lang/zh-CN.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+                        <span class="nx">KindEditor</span><span class="p">.</span><span class="nx">lang</span><span class="p">({</span>
+                                <span class="nx">hello</span> <span class="o">:</span> <span class="s1">&#39;你好&#39;</span>
+                        <span class="p">});</span>
+                        <span class="nx">KindEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">K</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="nx">K</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">,</span> <span class="p">{</span>
+                                        <span class="nx">items</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span>
+                                <span class="p">});</span>
+                        <span class="p">});</span>
+                <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;editor_id&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;content&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:700px;height:300px;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="upload.html" title="上传文件"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="theme.html" title="更改编辑器外观"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">KindEditor 4.x documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright kindsoft.net.
+    </div>
+  </body>
+
+<!-- Mirrored from kindeditor.net/docs/plugin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Apr 2016 09:17:04 GMT -->
+</html>
